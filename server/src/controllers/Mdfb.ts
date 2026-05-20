@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { MDFB_CHARACTERS, CHARACTER_KEYS, CharacterKey } from '@labrute/core';
+import { MDFB_CHARACTERS, CHARACTER_KEYS } from '@labrute/core';
 
 export const getCharacters = (_req: Request, res: Response) => {
   res.json(Object.values(MDFB_CHARACTERS));
@@ -14,8 +14,8 @@ export const getPlayer = async (req: Request, res: Response) => {
 };
 
 export const launchFight = async (_req: Request, res: Response) => {
-  const keys: CharacterKey[] = [...CHARACTER_KEYS];
-  const aiCharKey = keys[Math.floor(Math.random() * keys.length)];
+  const idx = Math.floor(Math.random() * CHARACTER_KEYS.length);
+  const aiCharKey = CHARACTER_KEYS[idx] as keyof typeof MDFB_CHARACTERS;
   const aiChar = MDFB_CHARACTERS[aiCharKey];
   const won = Math.random() > 0.5;
   res.json({
