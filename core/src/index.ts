@@ -1,7 +1,3 @@
-export * from './Achievements.js';
-export * from './constants.js';
-export * from './Elo.js';
-export * from './knownIssues.js';
 export * from './releases.js';
 export * from './Titles.js';
 export * from './types.js';
@@ -12,6 +8,7 @@ export * from './errors/index.js';
 export * from './fight/index.js';
 export * from './utils/index.js';
 export * from './items.js';
-export * from './characters.js';
+export { CHARACTERS, CHARACTER_KEYS, getCharacter, computeStatsAtLevel } from './characters.js';
 export * from './achievements.js';
-export * from './combat.js';
+export { simulateCombat } from './combat.js';
+export type { Fighter as MdfbFighter, CombatResult, CombatEvent } from './combat.js';

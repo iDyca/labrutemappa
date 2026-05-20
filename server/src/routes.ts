@@ -204,10 +204,10 @@ export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) =
   app.post('/api/user-log/list', UserLogs.list(prisma));
 
   // MAPPADOFUSLABRUTE
-  app.get('/api/mdfb/characters', getCharacters);
-  app.post('/api/mdfb/player', createPlayer(prisma));
-  app.get('/api/mdfb/player/:userId', getPlayer(prisma));
-  app.post('/api/mdfb/fight', launchFight(prisma));
-  app.post('/api/mdfb/chest/:chestId/open', openChest(prisma));
-  app.post('/api/mdfb/equip', equipItem(prisma));
+  app.get("/api/mdfb/characters", getCharacters);
+  app.post("/api/mdfb/player", createPlayer);
+  app.get("/api/mdfb/player/:userId", getPlayer);
+  app.post("/api/mdfb/fight", launchFight);
+  app.post("/api/mdfb/chest/:chestId/open", openChest);
+  app.post("/api/mdfb/equip", equipItem);
 };
