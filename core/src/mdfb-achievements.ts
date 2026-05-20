@@ -42,7 +42,7 @@ export function checkAchievements(params: {
   unlocked: string[];
 }): string[] {
   const newlyUnlocked: string[] = [];
-  for (const a of ACHIEVEMENTS) {
+  for (const a of MDFB_ACHIEVEMENTS) {
     if (params.unlocked.includes(a.id)) continue;
     let val = 0;
     if (a.type === 'WINSTREAK') val = params.winStreak;
