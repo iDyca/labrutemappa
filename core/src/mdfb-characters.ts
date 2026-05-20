@@ -25,7 +25,7 @@ export interface CharacterDef {
   bgColor: string;
 }
 
-export const CHARACTERS: Record<CharacterKey, CharacterDef> = {
+export const MDFB_CHARACTERS: Record<CharacterKey, CharacterDef> = {
   TIMMY: {
     key: 'TIMMY',
     name: 'Timmy',
@@ -124,10 +124,10 @@ export const CHARACTERS: Record<CharacterKey, CharacterDef> = {
   },
 };
 
-export const CHARACTER_KEYS = Object.keys(CHARACTERS) as CharacterKey[];
+export const CHARACTER_KEYS = Object.keys(MDFB_CHARACTERS) as CharacterKey[];
 
 export function getCharacter(key: CharacterKey): CharacterDef {
-  return CHARACTERS[key];
+  return MDFB_CHARACTERS[key];
 }
 
 export function computeStatsAtLevel(char: CharacterDef, level: number) {
