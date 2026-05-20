@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: mappadofuslabrute
+    env: node
+    plan: free
+    buildCommand: pnpm install && pnpm run build
+    startCommand: node server/dist/index.js
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mappadofuslabrute-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: mappadofuslabrute-db
+    plan: free
