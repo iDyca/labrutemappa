@@ -11,7 +11,7 @@ export interface AchievementDef {
   reward: ChestType;
 }
 
-export const ACHIEVEMENTS: AchievementDef[] = [
+export const MDFB_ACHIEVEMENTS: AchievementDef[] = [
   { id:'streak3', label:'Inarrêtable', description:'3 victoires d\'affilée', type:'WINSTREAK', threshold:3, reward:'BRONZE' },
   { id:'streak5', label:'En feu !', description:'5 victoires d\'affilée', type:'WINSTREAK', threshold:5, reward:'SILVER' },
   { id:'streak10', label:'Légende', description:'10 victoires d\'affilée', type:'WINSTREAK', threshold:10, reward:'GOLD' },

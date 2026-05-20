@@ -1,4 +1,4 @@
-import { CharacterDef } from './characters.js';
+import { CharacterDef } from './mdfb-characters.js';
 
 export interface Fighter {
   id: string;
