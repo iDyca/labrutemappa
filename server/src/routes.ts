@@ -19,6 +19,7 @@ import { Users } from './controllers/Users.js';
 import { ServerState } from './utils/ServerState.js';
 import { Configs } from './controllers/Configs.js';
 import { UserLogs } from './controllers/UserLogs.js';
+import { getCharacters, createPlayer, getPlayer, launchFight, openChest, equipItem } from './controllers/Mdfb.js';
 import { getFingerprintEvent } from './utils/fingerprint.js';
 
 export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) => {
@@ -201,4 +202,12 @@ export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) =
 
   // User logs
   app.post('/api/user-log/list', UserLogs.list(prisma));
+
+  // MAPPADOFUSLABRUTE
+  app.get('/api/mdfb/characters', getCharacters);
+  app.post('/api/mdfb/player', createPlayer(prisma));
+  app.get('/api/mdfb/player/:userId', getPlayer(prisma));
+  app.post('/api/mdfb/fight', launchFight(prisma));
+  app.post('/api/mdfb/chest/:chestId/open', openChest(prisma));
+  app.post('/api/mdfb/equip', equipItem(prisma));
 };

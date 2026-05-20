@@ -1,7 +1,8 @@
 {
-  "name": "labrute",
-  "version": "2.95.1",
+  "name": "mappadofuslabrute",
+  "version": "3.0.0",
   "private": true,
+  "description": "A competitive multiplayer online RPG game inspired by Dofus and LaBrute",
   "type": "module",
   "engines": {
     "npm": ">=8.1.2",

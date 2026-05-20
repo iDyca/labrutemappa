@@ -97,6 +97,17 @@ enum Gender {
   female
 }
 
+enum CharacterClass {
+  timmy
+  antoine
+  robin
+  hugo
+  maiko
+  pierre
+  romain
+  pierrelz
+}
+
 enum WeaponName {
   fan
   keyboard
@@ -229,6 +240,7 @@ model Brute {
   rankingsLowerLowerNeighbourId String?                 @db.Uuid
   rankingsNeighboursUpdatedAt   DateTime?               @db.Date
   gender                        Gender
+  characterClass                CharacterClass?
   user                          User?                   @relation(fields: [userId], references: [id])
   userId                        String?                 @db.Uuid
   // body: Hex string [p1 p1a p1b p2 p3 p4 p5 p6 p7 p7b p8]
@@ -287,6 +299,10 @@ model Brute {
   fightsLeft                    Int                     @default(6)
   victories                     Int                     @default(0)
   losses                        Int                     @default(0)
+  consecutiveVictories          Int                     @default(0)
+  bronzeChests                  Int                     @default(0)
+  silverChests                  Int                     @default(0)
+  goldChests                    Int                     @default(0)
   fights                        Fight[]
   fightsAsAdversary             Fight[]                 @relation("Adversary")
   logs                          Log[]

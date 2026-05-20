@@ -3,7 +3,7 @@ import { PETS_TOTAL_ODDS } from './brute/pets.js';
 import { SKILLS_TOTAL_ODDS } from './brute/skills.js';
 import { WEAPONS_TOTAL_ODDS, WeaponAnimations } from './brute/weapons.js';
 
-export const FIGHTS_PER_DAY = 6;
+export const FIGHTS_PER_DAY = 999; // Unlimited fights for Mappadofuslabrute
 
 export const ARENA_OPPONENTS_COUNT = 6;
 export const ARENA_OPPONENTS_MAX_GAP = 2;

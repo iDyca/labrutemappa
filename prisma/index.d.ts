@@ -217,6 +217,20 @@ export const Gender: {
 export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
+export const CharacterClass: {
+  timmy: 'timmy',
+  antoine: 'antoine',
+  robin: 'robin',
+  hugo: 'hugo',
+  maiko: 'maiko',
+  pierre: 'pierre',
+  romain: 'romain',
+  pierrelz: 'pierrelz'
+};
+
+export type CharacterClass = (typeof CharacterClass)[keyof typeof CharacterClass]
+
+
 export const WeaponName: {
   fan: 'fan',
   keyboard: 'keyboard',
@@ -625,6 +639,10 @@ export const DestinyChoiceSide: typeof $Enums.DestinyChoiceSide
 export type Gender = $Enums.Gender
 
 export const Gender: typeof $Enums.Gender
+
+export type CharacterClass = $Enums.CharacterClass
+
+export const CharacterClass: typeof $Enums.CharacterClass
 
 export type WeaponName = $Enums.WeaponName
 
@@ -7681,6 +7699,10 @@ export namespace Prisma {
     fightsLeft: number | null
     victories: number | null
     losses: number | null
+    consecutiveVictories: number | null
+    bronzeChests: number | null
+    silverChests: number | null
+    goldChests: number | null
     tournamentWins: number | null
     resets: number | null
   }
@@ -7710,6 +7732,10 @@ export namespace Prisma {
     fightsLeft: number | null
     victories: number | null
     losses: number | null
+    consecutiveVictories: number | null
+    bronzeChests: number | null
+    silverChests: number | null
+    goldChests: number | null
     tournamentWins: number | null
     resets: number | null
   }
@@ -7744,6 +7770,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId: string | null
     rankingsNeighboursUpdatedAt: Date | null
     gender: $Enums.Gender | null
+    characterClass: $Enums.CharacterClass | null
     userId: string | null
     body: string | null
     colors: string | null
@@ -7763,6 +7790,10 @@ export namespace Prisma {
     fightsLeft: number | null
     victories: number | null
     losses: number | null
+    consecutiveVictories: number | null
+    bronzeChests: number | null
+    silverChests: number | null
+    goldChests: number | null
     opponentsGeneratedAt: Date | null
     canRankUpSince: Date | null
     favorite: boolean | null
@@ -7803,6 +7834,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId: string | null
     rankingsNeighboursUpdatedAt: Date | null
     gender: $Enums.Gender | null
+    characterClass: $Enums.CharacterClass | null
     userId: string | null
     body: string | null
     colors: string | null
@@ -7822,6 +7854,10 @@ export namespace Prisma {
     fightsLeft: number | null
     victories: number | null
     losses: number | null
+    consecutiveVictories: number | null
+    bronzeChests: number | null
+    silverChests: number | null
+    goldChests: number | null
     opponentsGeneratedAt: Date | null
     canRankUpSince: Date | null
     favorite: boolean | null
@@ -7864,6 +7900,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId: number
     rankingsNeighboursUpdatedAt: number
     gender: number
+    characterClass: number
     userId: number
     body: number
     colors: number
@@ -7889,6 +7926,10 @@ export namespace Prisma {
     fightsLeft: number
     victories: number
     losses: number
+    consecutiveVictories: number
+    bronzeChests: number
+    silverChests: number
+    goldChests: number
     opponentsGeneratedAt: number
     canRankUpSince: number
     favorite: number
@@ -7926,6 +7967,10 @@ export namespace Prisma {
     fightsLeft?: true
     victories?: true
     losses?: true
+    consecutiveVictories?: true
+    bronzeChests?: true
+    silverChests?: true
+    goldChests?: true
     tournamentWins?: true
     resets?: true
   }
@@ -7955,6 +8000,10 @@ export namespace Prisma {
     fightsLeft?: true
     victories?: true
     losses?: true
+    consecutiveVictories?: true
+    bronzeChests?: true
+    silverChests?: true
+    goldChests?: true
     tournamentWins?: true
     resets?: true
   }
@@ -7989,6 +8038,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: true
     rankingsNeighboursUpdatedAt?: true
     gender?: true
+    characterClass?: true
     userId?: true
     body?: true
     colors?: true
@@ -8008,6 +8058,10 @@ export namespace Prisma {
     fightsLeft?: true
     victories?: true
     losses?: true
+    consecutiveVictories?: true
+    bronzeChests?: true
+    silverChests?: true
+    goldChests?: true
     opponentsGeneratedAt?: true
     canRankUpSince?: true
     favorite?: true
@@ -8048,6 +8102,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: true
     rankingsNeighboursUpdatedAt?: true
     gender?: true
+    characterClass?: true
     userId?: true
     body?: true
     colors?: true
@@ -8067,6 +8122,10 @@ export namespace Prisma {
     fightsLeft?: true
     victories?: true
     losses?: true
+    consecutiveVictories?: true
+    bronzeChests?: true
+    silverChests?: true
+    goldChests?: true
     opponentsGeneratedAt?: true
     canRankUpSince?: true
     favorite?: true
@@ -8109,6 +8168,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: true
     rankingsNeighboursUpdatedAt?: true
     gender?: true
+    characterClass?: true
     userId?: true
     body?: true
     colors?: true
@@ -8134,6 +8194,10 @@ export namespace Prisma {
     fightsLeft?: true
     victories?: true
     losses?: true
+    consecutiveVictories?: true
+    bronzeChests?: true
+    silverChests?: true
+    goldChests?: true
     opponentsGeneratedAt?: true
     canRankUpSince?: true
     favorite?: true
@@ -8263,6 +8327,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId: string | null
     rankingsNeighboursUpdatedAt: Date | null
     gender: $Enums.Gender
+    characterClass: $Enums.CharacterClass | null
     userId: string | null
     body: string
     colors: string
@@ -8288,6 +8353,10 @@ export namespace Prisma {
     fightsLeft: number
     victories: number
     losses: number
+    consecutiveVictories: number
+    bronzeChests: number
+    silverChests: number
+    goldChests: number
     opponentsGeneratedAt: Date | null
     canRankUpSince: Date | null
     favorite: boolean
@@ -8349,6 +8418,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: boolean
     rankingsNeighboursUpdatedAt?: boolean
     gender?: boolean
+    characterClass?: boolean
     userId?: boolean
     body?: boolean
     colors?: boolean
@@ -8374,6 +8444,10 @@ export namespace Prisma {
     fightsLeft?: boolean
     victories?: boolean
     losses?: boolean
+    consecutiveVictories?: boolean
+    bronzeChests?: boolean
+    silverChests?: boolean
+    goldChests?: boolean
     opponentsGeneratedAt?: boolean
     canRankUpSince?: boolean
     favorite?: boolean
@@ -8455,6 +8529,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: boolean
     rankingsNeighboursUpdatedAt?: boolean
     gender?: boolean
+    characterClass?: boolean
     userId?: boolean
     body?: boolean
     colors?: boolean
@@ -8480,6 +8555,10 @@ export namespace Prisma {
     fightsLeft?: boolean
     victories?: boolean
     losses?: boolean
+    consecutiveVictories?: boolean
+    bronzeChests?: boolean
+    silverChests?: boolean
+    goldChests?: boolean
     opponentsGeneratedAt?: boolean
     canRankUpSince?: boolean
     favorite?: boolean
@@ -8532,6 +8611,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: boolean
     rankingsNeighboursUpdatedAt?: boolean
     gender?: boolean
+    characterClass?: boolean
     userId?: boolean
     body?: boolean
     colors?: boolean
@@ -8557,6 +8637,10 @@ export namespace Prisma {
     fightsLeft?: boolean
     victories?: boolean
     losses?: boolean
+    consecutiveVictories?: boolean
+    bronzeChests?: boolean
+    silverChests?: boolean
+    goldChests?: boolean
     opponentsGeneratedAt?: boolean
     canRankUpSince?: boolean
     favorite?: boolean
@@ -8609,6 +8693,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: boolean
     rankingsNeighboursUpdatedAt?: boolean
     gender?: boolean
+    characterClass?: boolean
     userId?: boolean
     body?: boolean
     colors?: boolean
@@ -8634,6 +8719,10 @@ export namespace Prisma {
     fightsLeft?: boolean
     victories?: boolean
     losses?: boolean
+    consecutiveVictories?: boolean
+    bronzeChests?: boolean
+    silverChests?: boolean
+    goldChests?: boolean
     opponentsGeneratedAt?: boolean
     canRankUpSince?: boolean
     favorite?: boolean
@@ -8644,7 +8733,7 @@ export namespace Prisma {
     clanRoleId?: boolean
   }
 
-  export type BruteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "deletedAt" | "createdAt" | "willBeDeletedAt" | "deletionReason" | "destinyPath" | "previousDestinyPath" | "level" | "xp" | "hpStat" | "hpModifier" | "hpValue" | "strengthStat" | "strengthModifier" | "strengthValue" | "agilityStat" | "agilityModifier" | "agilityValue" | "speedStat" | "speedModifier" | "speedValue" | "ranking" | "rankingPosition" | "rankingPositionUpdatedAt" | "rankingsUpperNeighbourId" | "rankingsUpperUpperNeighbourId" | "rankingsLowerNeighbourId" | "rankingsLowerLowerNeighbourId" | "rankingsNeighboursUpdatedAt" | "gender" | "userId" | "body" | "colors" | "weapons" | "skills" | "pets" | "ascensions" | "ascendedWeapons" | "ascendedSkills" | "ascendedPets" | "masterId" | "pupilsCount" | "clanId" | "registeredForTournament" | "nextTournamentDate" | "currentTournamentDate" | "currentTournamentStepWatched" | "globalTournamentWatchedDate" | "globalTournamentRoundWatched" | "eventTournamentWatchedDate" | "eventTournamentRoundWatched" | "lastFight" | "fightsLeft" | "victories" | "losses" | "opponentsGeneratedAt" | "canRankUpSince" | "favorite" | "wantToJoinClanId" | "tournamentWins" | "eventId" | "resets" | "clanRoleId", ExtArgs["result"]["brute"]>
+  export type BruteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "deletedAt" | "createdAt" | "willBeDeletedAt" | "deletionReason" | "destinyPath" | "previousDestinyPath" | "level" | "xp" | "hpStat" | "hpModifier" | "hpValue" | "strengthStat" | "strengthModifier" | "strengthValue" | "agilityStat" | "agilityModifier" | "agilityValue" | "speedStat" | "speedModifier" | "speedValue" | "ranking" | "rankingPosition" | "rankingPositionUpdatedAt" | "rankingsUpperNeighbourId" | "rankingsUpperUpperNeighbourId" | "rankingsLowerNeighbourId" | "rankingsLowerLowerNeighbourId" | "rankingsNeighboursUpdatedAt" | "gender" | "characterClass" | "userId" | "body" | "colors" | "weapons" | "skills" | "pets" | "ascensions" | "ascendedWeapons" | "ascendedSkills" | "ascendedPets" | "masterId" | "pupilsCount" | "clanId" | "registeredForTournament" | "nextTournamentDate" | "currentTournamentDate" | "currentTournamentStepWatched" | "globalTournamentWatchedDate" | "globalTournamentRoundWatched" | "eventTournamentWatchedDate" | "eventTournamentRoundWatched" | "lastFight" | "fightsLeft" | "victories" | "losses" | "consecutiveVictories" | "bronzeChests" | "silverChests" | "goldChests" | "opponentsGeneratedAt" | "canRankUpSince" | "favorite" | "wantToJoinClanId" | "tournamentWins" | "eventId" | "resets" | "clanRoleId", ExtArgs["result"]["brute"]>
   export type BruteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rankingsUpperNeighbour?: boolean | Brute$rankingsUpperNeighbourArgs<ExtArgs>
     rankingsUpperUpperNeighbour?: boolean | Brute$rankingsUpperUpperNeighbourArgs<ExtArgs>
@@ -8785,6 +8874,7 @@ export namespace Prisma {
       rankingsLowerLowerNeighbourId: string | null
       rankingsNeighboursUpdatedAt: Date | null
       gender: $Enums.Gender
+      characterClass: $Enums.CharacterClass | null
       userId: string | null
       body: string
       colors: string
@@ -8810,6 +8900,10 @@ export namespace Prisma {
       fightsLeft: number
       victories: number
       losses: number
+      consecutiveVictories: number
+      bronzeChests: number
+      silverChests: number
+      goldChests: number
       opponentsGeneratedAt: Date | null
       canRankUpSince: Date | null
       favorite: boolean
@@ -9310,6 +9404,7 @@ export namespace Prisma {
     readonly rankingsLowerLowerNeighbourId: FieldRef<"Brute", 'String'>
     readonly rankingsNeighboursUpdatedAt: FieldRef<"Brute", 'DateTime'>
     readonly gender: FieldRef<"Brute", 'Gender'>
+    readonly characterClass: FieldRef<"Brute", 'CharacterClass'>
     readonly userId: FieldRef<"Brute", 'String'>
     readonly body: FieldRef<"Brute", 'String'>
     readonly colors: FieldRef<"Brute", 'String'>
@@ -9335,6 +9430,10 @@ export namespace Prisma {
     readonly fightsLeft: FieldRef<"Brute", 'Int'>
     readonly victories: FieldRef<"Brute", 'Int'>
     readonly losses: FieldRef<"Brute", 'Int'>
+    readonly consecutiveVictories: FieldRef<"Brute", 'Int'>
+    readonly bronzeChests: FieldRef<"Brute", 'Int'>
+    readonly silverChests: FieldRef<"Brute", 'Int'>
+    readonly goldChests: FieldRef<"Brute", 'Int'>
     readonly opponentsGeneratedAt: FieldRef<"Brute", 'DateTime'>
     readonly canRankUpSince: FieldRef<"Brute", 'DateTime'>
     readonly favorite: FieldRef<"Brute", 'Boolean'>
@@ -42218,6 +42317,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId: 'rankingsLowerLowerNeighbourId',
     rankingsNeighboursUpdatedAt: 'rankingsNeighboursUpdatedAt',
     gender: 'gender',
+    characterClass: 'characterClass',
     userId: 'userId',
     body: 'body',
     colors: 'colors',
@@ -42243,6 +42343,10 @@ export namespace Prisma {
     fightsLeft: 'fightsLeft',
     victories: 'victories',
     losses: 'losses',
+    consecutiveVictories: 'consecutiveVictories',
+    bronzeChests: 'bronzeChests',
+    silverChests: 'silverChests',
+    goldChests: 'goldChests',
     opponentsGeneratedAt: 'opponentsGeneratedAt',
     canRankUpSince: 'canRankUpSince',
     favorite: 'favorite',
@@ -42737,6 +42841,20 @@ export namespace Prisma {
    * Reference to a field of type 'Gender[]'
    */
   export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CharacterClass'
+   */
+  export type EnumCharacterClassFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CharacterClass'>
+    
+
+
+  /**
+   * Reference to a field of type 'CharacterClass[]'
+   */
+  export type ListEnumCharacterClassFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CharacterClass[]'>
     
 
 
@@ -43283,6 +43401,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: UuidNullableFilter<"Brute"> | string | null
     rankingsNeighboursUpdatedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     gender?: EnumGenderFilter<"Brute"> | $Enums.Gender
+    characterClass?: EnumCharacterClassNullableFilter<"Brute"> | $Enums.CharacterClass | null
     userId?: UuidNullableFilter<"Brute"> | string | null
     body?: StringFilter<"Brute"> | string
     colors?: StringFilter<"Brute"> | string
@@ -43308,6 +43427,10 @@ export namespace Prisma {
     fightsLeft?: IntFilter<"Brute"> | number
     victories?: IntFilter<"Brute"> | number
     losses?: IntFilter<"Brute"> | number
+    consecutiveVictories?: IntFilter<"Brute"> | number
+    bronzeChests?: IntFilter<"Brute"> | number
+    silverChests?: IntFilter<"Brute"> | number
+    goldChests?: IntFilter<"Brute"> | number
     opponentsGeneratedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     canRankUpSince?: DateTimeNullableFilter<"Brute"> | Date | string | null
     favorite?: BoolFilter<"Brute"> | boolean
@@ -43388,6 +43511,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: SortOrderInput | SortOrder
     rankingsNeighboursUpdatedAt?: SortOrderInput | SortOrder
     gender?: SortOrder
+    characterClass?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     body?: SortOrder
     colors?: SortOrder
@@ -43413,6 +43537,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     opponentsGeneratedAt?: SortOrderInput | SortOrder
     canRankUpSince?: SortOrderInput | SortOrder
     favorite?: SortOrder
@@ -43496,6 +43624,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: UuidNullableFilter<"Brute"> | string | null
     rankingsNeighboursUpdatedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     gender?: EnumGenderFilter<"Brute"> | $Enums.Gender
+    characterClass?: EnumCharacterClassNullableFilter<"Brute"> | $Enums.CharacterClass | null
     userId?: UuidNullableFilter<"Brute"> | string | null
     body?: StringFilter<"Brute"> | string
     colors?: StringFilter<"Brute"> | string
@@ -43521,6 +43650,10 @@ export namespace Prisma {
     fightsLeft?: IntFilter<"Brute"> | number
     victories?: IntFilter<"Brute"> | number
     losses?: IntFilter<"Brute"> | number
+    consecutiveVictories?: IntFilter<"Brute"> | number
+    bronzeChests?: IntFilter<"Brute"> | number
+    silverChests?: IntFilter<"Brute"> | number
+    goldChests?: IntFilter<"Brute"> | number
     opponentsGeneratedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     canRankUpSince?: DateTimeNullableFilter<"Brute"> | Date | string | null
     favorite?: BoolFilter<"Brute"> | boolean
@@ -43601,6 +43734,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: SortOrderInput | SortOrder
     rankingsNeighboursUpdatedAt?: SortOrderInput | SortOrder
     gender?: SortOrder
+    characterClass?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     body?: SortOrder
     colors?: SortOrder
@@ -43626,6 +43760,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     opponentsGeneratedAt?: SortOrderInput | SortOrder
     canRankUpSince?: SortOrderInput | SortOrder
     favorite?: SortOrder
@@ -43676,6 +43814,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: UuidNullableWithAggregatesFilter<"Brute"> | string | null
     rankingsNeighboursUpdatedAt?: DateTimeNullableWithAggregatesFilter<"Brute"> | Date | string | null
     gender?: EnumGenderWithAggregatesFilter<"Brute"> | $Enums.Gender
+    characterClass?: EnumCharacterClassNullableWithAggregatesFilter<"Brute"> | $Enums.CharacterClass | null
     userId?: UuidNullableWithAggregatesFilter<"Brute"> | string | null
     body?: StringWithAggregatesFilter<"Brute"> | string
     colors?: StringWithAggregatesFilter<"Brute"> | string
@@ -43701,6 +43840,10 @@ export namespace Prisma {
     fightsLeft?: IntWithAggregatesFilter<"Brute"> | number
     victories?: IntWithAggregatesFilter<"Brute"> | number
     losses?: IntWithAggregatesFilter<"Brute"> | number
+    consecutiveVictories?: IntWithAggregatesFilter<"Brute"> | number
+    bronzeChests?: IntWithAggregatesFilter<"Brute"> | number
+    silverChests?: IntWithAggregatesFilter<"Brute"> | number
+    goldChests?: IntWithAggregatesFilter<"Brute"> | number
     opponentsGeneratedAt?: DateTimeNullableWithAggregatesFilter<"Brute"> | Date | string | null
     canRankUpSince?: DateTimeNullableWithAggregatesFilter<"Brute"> | Date | string | null
     favorite?: BoolWithAggregatesFilter<"Brute"> | boolean
@@ -45828,6 +45971,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -45850,6 +45994,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -45927,6 +46075,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -45952,6 +46101,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -46018,6 +46171,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -46040,6 +46194,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -46117,6 +46275,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -46142,6 +46301,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -46212,6 +46375,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -46237,6 +46401,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -46275,6 +46443,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -46297,6 +46466,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -46336,6 +46509,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -46361,6 +46535,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -48710,6 +48888,13 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
+  export type EnumCharacterClassNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CharacterClass | EnumCharacterClassFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCharacterClassNullableFilter<$PrismaModel> | $Enums.CharacterClass | null
+  }
+
   export type EnumWeaponNameNullableListFilter<$PrismaModel = never> = {
     equals?: $Enums.WeaponName[] | ListEnumWeaponNameFieldRefInput<$PrismaModel> | null
     has?: $Enums.WeaponName | EnumWeaponNameFieldRefInput<$PrismaModel> | null
@@ -48911,6 +49096,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: SortOrder
     rankingsNeighboursUpdatedAt?: SortOrder
     gender?: SortOrder
+    characterClass?: SortOrder
     userId?: SortOrder
     body?: SortOrder
     colors?: SortOrder
@@ -48936,6 +49122,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     opponentsGeneratedAt?: SortOrder
     canRankUpSince?: SortOrder
     favorite?: SortOrder
@@ -48971,6 +49161,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     tournamentWins?: SortOrder
     resets?: SortOrder
   }
@@ -49005,6 +49199,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: SortOrder
     rankingsNeighboursUpdatedAt?: SortOrder
     gender?: SortOrder
+    characterClass?: SortOrder
     userId?: SortOrder
     body?: SortOrder
     colors?: SortOrder
@@ -49024,6 +49219,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     opponentsGeneratedAt?: SortOrder
     canRankUpSince?: SortOrder
     favorite?: SortOrder
@@ -49064,6 +49263,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: SortOrder
     rankingsNeighboursUpdatedAt?: SortOrder
     gender?: SortOrder
+    characterClass?: SortOrder
     userId?: SortOrder
     body?: SortOrder
     colors?: SortOrder
@@ -49083,6 +49283,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     opponentsGeneratedAt?: SortOrder
     canRankUpSince?: SortOrder
     favorite?: SortOrder
@@ -49118,6 +49322,10 @@ export namespace Prisma {
     fightsLeft?: SortOrder
     victories?: SortOrder
     losses?: SortOrder
+    consecutiveVictories?: SortOrder
+    bronzeChests?: SortOrder
+    silverChests?: SortOrder
+    goldChests?: SortOrder
     tournamentWins?: SortOrder
     resets?: SortOrder
   }
@@ -49146,6 +49354,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumGenderFilter<$PrismaModel>
     _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type EnumCharacterClassNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CharacterClass | EnumCharacterClassFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCharacterClassNullableWithAggregatesFilter<$PrismaModel> | $Enums.CharacterClass | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCharacterClassNullableFilter<$PrismaModel>
+    _max?: NestedEnumCharacterClassNullableFilter<$PrismaModel>
   }
 
   export type BruteScalarRelationFilter = {
@@ -51458,6 +51676,10 @@ export namespace Prisma {
 
   export type EnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender
+  }
+
+  export type NullableEnumCharacterClassFieldUpdateOperationsInput = {
+    set?: $Enums.CharacterClass | null
   }
 
   export type BruteUpdateweaponsInput = {
@@ -54177,6 +54399,13 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
+  export type NestedEnumCharacterClassNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CharacterClass | EnumCharacterClassFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCharacterClassNullableFilter<$PrismaModel> | $Enums.CharacterClass | null
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -54201,6 +54430,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumGenderFilter<$PrismaModel>
     _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCharacterClassNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CharacterClass | EnumCharacterClassFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CharacterClass[] | ListEnumCharacterClassFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCharacterClassNullableWithAggregatesFilter<$PrismaModel> | $Enums.CharacterClass | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCharacterClassNullableFilter<$PrismaModel>
+    _max?: NestedEnumCharacterClassNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumLogTypeFilter<$PrismaModel = never> = {
@@ -54520,6 +54759,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -54542,6 +54782,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -54618,6 +54862,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -54642,6 +54887,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -54862,6 +55111,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -54884,6 +55134,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -54960,6 +55214,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -54985,6 +55240,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -55170,6 +55429,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: UuidNullableFilter<"Brute"> | string | null
     rankingsNeighboursUpdatedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     gender?: EnumGenderFilter<"Brute"> | $Enums.Gender
+    characterClass?: EnumCharacterClassNullableFilter<"Brute"> | $Enums.CharacterClass | null
     userId?: UuidNullableFilter<"Brute"> | string | null
     body?: StringFilter<"Brute"> | string
     colors?: StringFilter<"Brute"> | string
@@ -55195,6 +55455,10 @@ export namespace Prisma {
     fightsLeft?: IntFilter<"Brute"> | number
     victories?: IntFilter<"Brute"> | number
     losses?: IntFilter<"Brute"> | number
+    consecutiveVictories?: IntFilter<"Brute"> | number
+    bronzeChests?: IntFilter<"Brute"> | number
+    silverChests?: IntFilter<"Brute"> | number
+    goldChests?: IntFilter<"Brute"> | number
     opponentsGeneratedAt?: DateTimeNullableFilter<"Brute"> | Date | string | null
     canRankUpSince?: DateTimeNullableFilter<"Brute"> | Date | string | null
     favorite?: BoolFilter<"Brute"> | boolean
@@ -55544,6 +55808,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -55566,6 +55831,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -55642,6 +55911,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -55667,6 +55937,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -55825,6 +56099,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -55847,6 +56122,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -55923,6 +56202,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -55948,6 +56228,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -56013,6 +56297,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -56035,6 +56320,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56111,6 +56400,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -56136,6 +56426,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56206,6 +56500,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -56228,6 +56523,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56304,6 +56603,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -56329,6 +56629,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56399,6 +56703,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -56421,6 +56726,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56497,6 +56806,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -56522,6 +56832,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56592,6 +56906,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -56614,6 +56929,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56690,6 +57009,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -56715,6 +57035,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56856,6 +57180,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -56878,6 +57203,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -56954,6 +57283,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -56979,6 +57309,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57049,6 +57383,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -57071,6 +57406,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57147,6 +57486,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -57171,6 +57511,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57495,6 +57839,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -57517,6 +57862,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57593,6 +57942,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -57618,6 +57968,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57688,6 +58042,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -57710,6 +58065,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -57786,6 +58145,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -57811,6 +58171,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58309,6 +58673,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -58331,6 +58696,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58406,6 +58775,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -58431,6 +58801,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58507,6 +58881,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -58529,6 +58904,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58604,6 +58983,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -58629,6 +59009,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58705,6 +59089,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -58727,6 +59112,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58802,6 +59191,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -58827,6 +59217,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -58903,6 +59297,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -58925,6 +59320,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -59000,6 +59399,7 @@ export namespace Prisma {
     rankingsLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -59025,6 +59425,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -59250,6 +59654,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -59272,6 +59677,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59348,6 +59757,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -59373,6 +59783,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59449,6 +59863,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -59471,6 +59886,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59547,6 +59966,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -59572,6 +59992,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59648,6 +60072,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -59670,6 +60095,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59746,6 +60175,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -59771,6 +60201,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59847,6 +60281,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -59869,6 +60304,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -59945,6 +60384,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -59970,6 +60410,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -60123,6 +60567,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -60145,6 +60590,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -60221,6 +60670,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -60246,6 +60696,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -61136,6 +61590,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -61158,6 +61613,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -61234,6 +61693,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -61259,6 +61719,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -61340,6 +61804,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -61362,6 +61827,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -61438,6 +61907,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -61463,6 +61933,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -61528,6 +62002,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -61550,6 +62025,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -61626,6 +62105,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -61651,6 +62131,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -61732,6 +62216,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -61754,6 +62239,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -61830,6 +62319,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -61855,6 +62345,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -61920,6 +62414,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -61942,6 +62437,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -62018,6 +62517,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -62043,6 +62543,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -62113,6 +62617,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -62135,6 +62640,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -62211,6 +62720,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -62236,6 +62746,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -62484,6 +62998,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -62506,6 +63021,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -62582,6 +63101,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -62607,6 +63127,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -62683,6 +63207,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -62705,6 +63230,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -62781,6 +63310,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -62806,6 +63336,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -62975,6 +63509,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -62997,6 +63532,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -63073,6 +63612,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -63098,6 +63638,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -63263,6 +63807,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -63285,6 +63830,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -63361,6 +63910,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -63386,6 +63936,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -63547,6 +64101,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -63569,6 +64124,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -63645,6 +64204,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -63670,6 +64230,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -63787,6 +64351,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -63809,6 +64374,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -63885,6 +64454,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -63910,6 +64480,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -63991,6 +64565,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -64013,6 +64588,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -64089,6 +64668,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -64114,6 +64694,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -64334,6 +64918,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -64356,6 +64941,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -64432,6 +65021,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -64457,6 +65047,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -64538,6 +65132,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -64560,6 +65155,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -64636,6 +65235,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -64661,6 +65261,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -64874,6 +65478,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -64896,6 +65501,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -64972,6 +65581,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -64997,6 +65607,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -65078,6 +65692,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -65100,6 +65715,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -65176,6 +65795,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -65201,6 +65821,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -65266,6 +65890,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -65288,6 +65913,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -65364,6 +65993,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -65389,6 +66019,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -65541,6 +66175,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -65563,6 +66198,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -65639,6 +66278,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -65664,6 +66304,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -65806,6 +66450,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -65828,6 +66473,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -65904,6 +66553,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -65929,6 +66579,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66152,6 +66806,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -66174,6 +66829,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -66250,6 +66909,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -66275,6 +66935,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -66433,6 +67097,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -66455,6 +67120,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66531,6 +67200,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -66556,6 +67226,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66626,6 +67300,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -66648,6 +67323,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66724,6 +67403,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -66748,6 +67428,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66824,6 +67508,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -66846,6 +67531,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -66922,6 +67611,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -66947,6 +67637,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -67241,6 +67935,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -67263,6 +67958,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -67339,6 +68038,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -67364,6 +68064,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -67631,6 +68335,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -67653,6 +68358,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -67729,6 +68438,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -67754,6 +68464,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -67910,6 +68624,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -67932,6 +68647,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -68008,6 +68727,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -68033,6 +68753,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -68143,6 +68867,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -68165,6 +68890,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -68241,6 +68970,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -68266,6 +68996,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -68382,6 +69116,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -68404,6 +69139,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -68480,6 +69219,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -68505,6 +69245,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -68570,6 +69314,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -68592,6 +69337,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -68668,6 +69417,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -68693,6 +69443,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -68819,6 +69573,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -68841,6 +69596,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -68917,6 +69676,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -68942,6 +69702,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -69489,6 +70253,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -69511,6 +70276,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -69587,6 +70356,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -69612,6 +70382,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -69682,6 +70456,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -69704,6 +70479,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -69780,6 +70559,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -69805,6 +70585,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -69950,6 +70734,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -69972,6 +70757,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70048,6 +70837,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -70073,6 +70863,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70225,6 +71019,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -70247,6 +71042,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -70323,6 +71122,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -70348,6 +71148,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -70490,6 +71294,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -70512,6 +71317,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70588,6 +71397,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -70613,6 +71423,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70711,6 +71525,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -70733,6 +71548,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70809,6 +71628,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -70834,6 +71654,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -70960,6 +71784,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -70982,6 +71807,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -71058,6 +71887,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -71083,6 +71913,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -71341,6 +72175,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: Date | string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -71363,6 +72198,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -71439,6 +72278,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -71464,6 +72304,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -71610,6 +72454,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     body?: string
     colors?: string
     weapons?: BruteCreateweaponsInput | $Enums.WeaponName[]
@@ -71634,6 +72479,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -71722,6 +72571,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -71744,6 +72594,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -71820,6 +72674,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -71844,6 +72699,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -71914,6 +72773,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -71938,6 +72798,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -72131,6 +72995,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -72153,6 +73018,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -72229,6 +73098,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -72254,6 +73124,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -72323,6 +73197,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -72348,6 +73223,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -72482,6 +73361,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -72506,6 +73386,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -72674,6 +73558,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -72699,6 +73584,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -72740,6 +73629,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -72765,6 +73655,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -72806,6 +73700,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -72831,6 +73726,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -72872,6 +73771,7 @@ export namespace Prisma {
     rankingsLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -72897,6 +73797,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -72961,6 +73865,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -72983,6 +73888,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73059,6 +73968,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73083,6 +73993,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73153,6 +74067,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73177,6 +74092,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73446,6 +74365,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -73468,6 +74388,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73544,6 +74468,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73569,6 +74494,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73638,6 +74567,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73663,6 +74593,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73701,6 +74635,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -73723,6 +74658,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73799,6 +74738,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73824,6 +74764,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -73893,6 +74837,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -73918,6 +74863,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74276,6 +75225,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -74298,6 +75248,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74373,6 +75327,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -74398,6 +75353,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74467,6 +75426,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -74492,6 +75452,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74530,6 +75494,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -74552,6 +75517,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74627,6 +75596,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -74652,6 +75622,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74721,6 +75695,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -74746,6 +75721,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74784,6 +75763,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -74806,6 +75786,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74881,6 +75865,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -74906,6 +75891,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -74975,6 +75964,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -75000,6 +75990,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75038,6 +76032,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -75060,6 +76055,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75135,6 +76134,7 @@ export namespace Prisma {
     rankingsLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -75160,6 +76160,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75229,6 +76233,7 @@ export namespace Prisma {
     rankingsLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -75254,6 +76259,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75586,6 +76595,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -75608,6 +76618,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75684,6 +76698,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -75709,6 +76724,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75778,6 +76797,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -75803,6 +76823,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -75993,6 +77017,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -76017,6 +77042,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -76059,6 +77088,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -76084,6 +77114,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -76187,6 +77221,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -76209,6 +77244,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -76285,6 +77324,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -76309,6 +77349,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -76379,6 +77423,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -76403,6 +77448,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -76441,6 +77490,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -76463,6 +77513,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -76539,6 +77593,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -76564,6 +77619,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -76633,6 +77692,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -76658,6 +77718,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77037,6 +78101,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -77059,6 +78124,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77135,6 +78204,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77160,6 +78230,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77229,6 +78303,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77254,6 +78329,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77292,6 +78371,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -77314,6 +78394,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77390,6 +78474,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77415,6 +78500,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77484,6 +78573,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77509,6 +78599,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77551,6 +78645,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -77576,6 +78671,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -77613,6 +78712,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -77635,6 +78735,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77711,6 +78815,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77736,6 +78841,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77805,6 +78914,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -77830,6 +78940,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -77871,6 +78985,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: string | null
     rankingsNeighboursUpdatedAt?: Date | string | null
     gender: $Enums.Gender
+    characterClass?: $Enums.CharacterClass | null
     userId?: string | null
     body?: string
     colors?: string
@@ -77896,6 +79011,10 @@ export namespace Prisma {
     fightsLeft?: number
     victories?: number
     losses?: number
+    consecutiveVictories?: number
+    bronzeChests?: number
+    silverChests?: number
+    goldChests?: number
     opponentsGeneratedAt?: Date | string | null
     canRankUpSince?: Date | string | null
     favorite?: boolean
@@ -77933,6 +79052,7 @@ export namespace Prisma {
     rankingPositionUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
     weapons?: BruteUpdateweaponsInput | $Enums.WeaponName[]
@@ -77955,6 +79075,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -78031,6 +79155,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -78056,6 +79181,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean
@@ -78125,6 +79254,7 @@ export namespace Prisma {
     rankingsLowerLowerNeighbourId?: NullableStringFieldUpdateOperationsInput | string | null
     rankingsNeighboursUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    characterClass?: NullableEnumCharacterClassFieldUpdateOperationsInput | $Enums.CharacterClass | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     body?: StringFieldUpdateOperationsInput | string
     colors?: StringFieldUpdateOperationsInput | string
@@ -78150,6 +79280,10 @@ export namespace Prisma {
     fightsLeft?: IntFieldUpdateOperationsInput | number
     victories?: IntFieldUpdateOperationsInput | number
     losses?: IntFieldUpdateOperationsInput | number
+    consecutiveVictories?: IntFieldUpdateOperationsInput | number
+    bronzeChests?: IntFieldUpdateOperationsInput | number
+    silverChests?: IntFieldUpdateOperationsInput | number
+    goldChests?: IntFieldUpdateOperationsInput | number
     opponentsGeneratedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canRankUpSince?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     favorite?: BoolFieldUpdateOperationsInput | boolean

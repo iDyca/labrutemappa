@@ -25,9 +25,7 @@ import {
   createRandomBruteStats,
   getBruteGoldValue,
   getBruteToSave,
-  getFightsLeft,
-  getGoldNeededForNewBrute,
-  getLevelUpChoices,
+  getFightsLeft, getLevelUpChoices,
   getRandomStartingStats,
   getTieredPets,
   getTieredSkills,
@@ -46,11 +44,11 @@ import {
   colorableBodyParts,
   readColorString,
   generateColorString,
-  BruteUnlockColorResponse,
+  BruteUnlockColorResponse
 } from '@labrute/core';
 import {
   Brute,
-  DestinyChoiceSide, DestinyChoiceType, EventStatus, Gender,
+  CharacterClass, DestinyChoiceSide, DestinyChoiceType, EventStatus, Gender,
   InventoryItemType, LogType, PetName, Prisma, PrismaClient, SkillName, TournamentType,
   UserLogType,
   WeaponName,
@@ -318,7 +316,7 @@ export const Brutes = {
       gender: Gender,
       body: string,
       colors: string,
-      master: string | null,
+      characterClass: CharacterClass,
       eventId: string | null,
     }>,
     res: Response<BrutesCreateResponse>,
@@ -339,7 +337,9 @@ export const Brutes = {
         throw new ExpectedError(translate('invalidParameters', authed));
       }
 
-      if (req.body.master !== null && typeof req.body.master !== 'string') {
+      // Validate character class selection (required for Mappadofuslabrute)
+      const validCharacterClasses = Object.values(CharacterClass);
+      if (!validCharacterClasses.includes(req.body.characterClass)) {
         throw new ExpectedError(translate('invalidParameters', authed));
       }
 
@@ -392,9 +392,9 @@ export const Brutes = {
         throw new Error(translate('userNotFound', authed));
       }
 
-      // Only one brute per event
-      if (req.body.eventId && user.brutes.some((b) => b.eventId === req.body.eventId)) {
-        throw new LimitError(translate('oneBrutePerEvent', authed));
+      // Mappadofuslabrute: Only one brute per user allowed
+      if (user.brutes.length > 0) {
+        throw new LimitError('You can only have one character in Mappadofuslabrute');
       }
 
       // No creation for started events
@@ -418,60 +418,23 @@ export const Brutes = {
         }
       }
 
+      // No gold system for Mappadofuslabrute - one free brute per player
       let goldLost = 0;
       let newLimit = user.bruteLimit;
 
-      // Refuse if user has too many brutes and not enough gold
-      if (user.brutes.length >= user.bruteLimit) {
-        const gold = getGoldNeededForNewBrute(user);
-        if (user.gold < gold) {
-          throw new LimitError(translate('bruteLimitReached', authed, { gold }));
-        } else {
-          // Remove XXX Gold and update brute limit
-          await traced('brutes.create.updateUser', () => prisma.user.update({
-            where: { id: user.id },
-            data: {
-              gold: { decrement: gold },
-              bruteLimit: { increment: 1 },
-            },
-            select: { id: true },
-          }));
-          goldLost = gold;
-          newLimit += 1;
-
-          createUserLog(prisma, {
-            type: UserLogType.GOLD_LOSS,
-            userId: authed.id,
-            gold: goldLost,
-          });
-        }
-      }
-
-      const masterName = req.body.master;
-      const master = masterName ? await traced('brutes.create.findMaster', () => prisma.brute.findFirst({
-        where: {
-          name: masterName,
-          deletedAt: null,
-          userId: {
-            not: user.id,
-          },
-        },
-        select: { id: true },
-      })) : undefined;
-
       const startingStats = getRandomStartingStats();
 
-      // Create brute
+      // Create brute with character class selection
       const brute = await traced('brutes.create.createBrute', () => prisma.brute.create({
         data: {
           name: req.body.name,
           ...getBruteToSave(createRandomBruteStats(startingStats)),
           id: undefined,
           gender: req.body.gender,
+          characterClass: req.body.characterClass,
           user: { connect: { id: user.id } },
           body: req.body.body,
           colors: req.body.colors,
-          master: master ? { connect: { id: master.id } } : undefined,
           event: req.body.eventId ? { connect: { id: req.body.eventId } } : undefined,
         },
       }));
@@ -516,25 +479,6 @@ export const Brutes = {
           path: [],
         },
       }));
-
-      // Update master's pupils count
-      if (master) {
-        await traced('brutes.create.updateMaster', () => prisma.brute.update({
-          where: { id: master.id },
-          data: { pupilsCount: { increment: 1 } },
-          select: { id: true },
-        }));
-
-        // Add log
-        await traced('brutes.create.createLog', () => prisma.log.create({
-          data: {
-            currentBrute: { connect: { id: master.id } },
-            type: LogType.child,
-            brute: brute.name,
-          },
-          select: { id: true },
-        }));
-      }
 
       // Update achievements
       await checkLevelUpAchievements(prisma, brute, destinyChoice);

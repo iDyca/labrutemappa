@@ -11,3 +11,7 @@ export * from './clan/index.js';
 export * from './errors/index.js';
 export * from './fight/index.js';
 export * from './utils/index.js';
+export * from './items.js';
+export * from './characters.js';
+export * from './achievements.js';
+export * from './combat.js';

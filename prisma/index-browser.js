@@ -193,6 +193,7 @@ exports.Prisma.BruteScalarFieldEnum = {
   rankingsLowerLowerNeighbourId: 'rankingsLowerLowerNeighbourId',
   rankingsNeighboursUpdatedAt: 'rankingsNeighboursUpdatedAt',
   gender: 'gender',
+  characterClass: 'characterClass',
   userId: 'userId',
   body: 'body',
   colors: 'colors',
@@ -218,6 +219,10 @@ exports.Prisma.BruteScalarFieldEnum = {
   fightsLeft: 'fightsLeft',
   victories: 'victories',
   losses: 'losses',
+  consecutiveVictories: 'consecutiveVictories',
+  bronzeChests: 'bronzeChests',
+  silverChests: 'silverChests',
+  goldChests: 'goldChests',
   opponentsGeneratedAt: 'opponentsGeneratedAt',
   canRankUpSince: 'canRankUpSince',
   favorite: 'favorite',
@@ -519,6 +524,17 @@ exports.UserLogType = exports.$Enums.UserLogType = {
 exports.Gender = exports.$Enums.Gender = {
   male: 'male',
   female: 'female'
+};
+
+exports.CharacterClass = exports.$Enums.CharacterClass = {
+  timmy: 'timmy',
+  antoine: 'antoine',
+  robin: 'robin',
+  hugo: 'hugo',
+  maiko: 'maiko',
+  pierre: 'pierre',
+  romain: 'romain',
+  pierrelz: 'pierrelz'
 };
 
 exports.DestinyChoiceSide = exports.$Enums.DestinyChoiceSide = {

@@ -54,6 +54,7 @@ model User {
   notifications          Notification[]
   reportsHandled         BruteReport[]    @relation("BruteReportHandler")
   logs                   UserLog[]
+  mdfbPlayer             MdfbPlayer?
 
   @@index([createdAt])
 }
@@ -95,6 +96,17 @@ enum DestinyChoiceSide {
 enum Gender {
   male
   female
+}
+
+enum CharacterClass {
+  timmy
+  antoine
+  robin
+  hugo
+  maiko
+  pierre
+  romain
+  pierrelz
 }
 
 enum WeaponName {
@@ -229,6 +241,7 @@ model Brute {
   rankingsLowerLowerNeighbourId String?                 @db.Uuid
   rankingsNeighboursUpdatedAt   DateTime?               @db.Date
   gender                        Gender
+  characterClass                CharacterClass?
   user                          User?                   @relation(fields: [userId], references: [id])
   userId                        String?                 @db.Uuid
   // body: Hex string [p1 p1a p1b p2 p3 p4 p5 p6 p7 p7b p8]
@@ -287,6 +300,10 @@ model Brute {
   fightsLeft                    Int                     @default(6)
   victories                     Int                     @default(0)
   losses                        Int                     @default(0)
+  consecutiveVictories          Int                     @default(0)
+  bronzeChests                  Int                     @default(0)
+  silverChests                  Int                     @default(0)
+  goldChests                    Int                     @default(0)
   fights                        Fight[]
   fightsAsAdversary             Fight[]                 @relation("Adversary")
   logs                          Log[]
@@ -1004,4 +1021,82 @@ model ClanRole {
   @@index([clanId])
   @@index([id, clanId])
   @@index([clanId, name])
+}
+
+// ─── MAPPADOFUSLABRUTE ───────────────────────────────
+model MdfbPlayer {
+  id               String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId           String             @unique @db.Uuid
+  user             User               @relation(fields: [userId], references: [id])
+  characterKey     String
+  level            Int                @default(1)
+  xp               Int                @default(0)
+  gold             Int                @default(50)
+  winStreak        Int                @default(0)
+  totalMatches     Int                @default(0)
+  critsTotal       Int                @default(0)
+  quickWins        Int                @default(0)
+  statsHP          Int                @default(100)
+  statsSTR         Int                @default(10)
+  statsAGI         Int                @default(10)
+  statsSPD         Int                @default(10)
+  statsWIS         Int                @default(10)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  itemInstances    MdfbItemInstance[]
+  achievements     MdfbAchievement[]
+  chests           MdfbChest[]
+  identityCounters Json               @default("{}")
+
+  @@index([userId])
+}
+
+model MdfbItemInstance {
+  id           String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  playerId     String     @db.Uuid
+  player       MdfbPlayer @relation(fields: [playerId], references: [id])
+  itemDefId    String
+  rolledStats  Json
+  slot         String?
+  equippedSlot String?
+  createdAt    DateTime   @default(now())
+
+  @@index([playerId])
+}
+
+model MdfbAchievement {
+  id            String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  playerId      String     @db.Uuid
+  player        MdfbPlayer @relation(fields: [playerId], references: [id])
+  achievementId String
+  unlockedAt    DateTime   @default(now())
+
+  @@unique([playerId, achievementId])
+}
+
+model MdfbChest {
+  id        String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  playerId  String     @db.Uuid
+  player    MdfbPlayer @relation(fields: [playerId], references: [id])
+  chestType String
+  opened    Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  openedAt  DateTime?
+
+  @@index([playerId])
+}
+
+model MdfbFight {
+  id         String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  attackerId String   @db.Uuid
+  defenderId String?  @db.Uuid
+  winnerId   String   @db.Uuid
+  turns      Int
+  events     Json
+  xpGain     Int
+  goldGain   Int
+  isQuickWin Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([attackerId])
 }
