@@ -18,7 +18,7 @@
     "start": "pnpm --filter server start",
     "dev": "concurrently --prefix \"[{name}]\" --names \"DB,SERVER,CLIENT,ETWIN\" -c \"bgMagenta.bold,bgBlue.bold,bgGreen.bold,bgYellow.bold\" \"pnpm studio\" \"pnpm back\" \"pnpm front\" \"pnpm eternaltwin:start\"",
     "build": "pnpm compile && pnpm build:client",
-    "build:client": "pnpm --filter client build",
+    "build:client": "NODE_OPTIONS=--max-old-space-size=1536 pnpm --filter client build",
     "db:migrate:manual": "pnpm --filter server db:migrate:manual",
     "db:sync:dev": "pnpm --filter server db:sync:dev",
     "db:sync:prod": "pnpm --filter server db:sync:prod",
