@@ -156,7 +156,7 @@
 
 <!-- ═══════════════════════ GRILLE DES SORTS ═════════════════════ -->
 <div class="section">
-  <h2>✨ Les 20 sorts (Niveaux 1 → 50)</h2>
+  <h2>✨ Les 40 sorts (Niveaux 1 → 50)</h2>
 
   <div id="spells-container"></div>
 </div>
@@ -199,26 +199,57 @@
 <script>
 // ── Spell data (inline) ──────────────────────────────────────────────────────
 const SPELLS = [
-  { id:'amplification',    name:'Amplification',        level:1,  base:5,   dofus:'Iop',      desc:'Inflige 4 à 10 dégâts bonus à l\'ennemi.',                                emoji:'⚡', effect:'DAMAGE' },
-  { id:'soin_rapide',      name:'Soin Rapide',           level:1,  base:5,   dofus:'Eniripsa', desc:'Restaure 10 à 18% des PV maximum du lanceur.',                             emoji:'💚', effect:'HEAL' },
-  { id:'fleche_perforante',name:'Flèche Perforante',     level:5,  base:4,   dofus:'Cra',      desc:'Inflige 12 à 22 dégâts, ignorant l\'esquive ennemie.',                     emoji:'🏹', effect:'DAMAGE' },
-  { id:'deceleration',     name:'Décélération',          level:5,  base:4,   dofus:'Xelor',    desc:'L\'ennemi rate sa contre-attaque ce tour.',                                emoji:'⏳', effect:'SKIP_ATTACK' },
-  { id:'bouclier_feca',    name:'Bouclier de Féca',      level:10, base:4,   dofus:'Féca',     desc:'Génère un bouclier qui absorbe 20 à 35 dégâts.',                           emoji:'🛡️', effect:'SHIELD' },
-  { id:'chatiment',        name:'Châtiment',             level:10, base:3,   dofus:'Sacrieur', desc:'Inflige 20 à 35 dégâts et soigne 50% des dégâts infligés.',                emoji:'🩸', effect:'LIFESTEAL' },
-  { id:'ebranlement',      name:'Ébranlement',           level:15, base:3,   dofus:'Iop',      desc:'Inflige 25 à 40 dégâts à l\'ennemi.',                                     emoji:'💥', effect:'DAMAGE' },
-  { id:'grace_divine',     name:'Grâce Divine',          level:15, base:3,   dofus:'Eniripsa', desc:'Restaure 20 à 30% des PV maximum du lanceur.',                             emoji:'✨', effect:'HEAL' },
-  { id:'double_frappe',    name:'Double Frappe',         level:20, base:2.5, dofus:'Sram',     desc:'Frappe l\'ennemi 2 fois pour 15 à 25 dégâts chacune.',                    emoji:'👊', effect:'MULTI_HIT' },
-  { id:'epines_sram',      name:'Épines du Sram',        level:20, base:2.5, dofus:'Sram',     desc:'Inflige 15 à 25 dégâts et réduit les dégâts ennemis de 15%.',             emoji:'🌵', effect:'DEBUFF_DAMAGE' },
-  { id:'tromperie',        name:'Tromperie',             level:25, base:2.5, dofus:'Sram',     desc:'Réduit les dégâts ennemis de 20% sans bonus de dégâts.',                  emoji:'🎭', effect:'DEBUFF_DAMAGE' },
-  { id:'rafale',           name:'Rafale',                level:25, base:2,   dofus:'Cra',      desc:'Frappe l\'ennemi 3 fois pour 12 à 20 dégâts chacune.',                    emoji:'🌪️', effect:'MULTI_HIT' },
-  { id:'mot_prevention',   name:'Mot de Prévention',     level:30, base:2,   dofus:'Eniripsa', desc:'Le lanceur survit une fois avec 1 PV au lieu de mourir.',                  emoji:'🕊️', effect:'SURVIVE' },
-  { id:'coup_poing_iop',   name:'Coup de Poing du Iop',  level:30, base:2,   dofus:'Iop',      desc:'Inflige 45 à 70 dégâts à l\'ennemi.',                                     emoji:'🥊', effect:'DAMAGE' },
-  { id:'absorption',       name:'Absorption',            level:35, base:1.5, dofus:'Sacrieur', desc:'Inflige 40 à 65 dégâts et soigne 100% des dégâts infligés.',               emoji:'🧛', effect:'LIFESTEAL' },
-  { id:'mur_feca',         name:'Mur de Féca',           level:35, base:1.5, dofus:'Féca',     desc:'Génère un bouclier qui absorbe 55 à 80 dégâts.',                           emoji:'🏰', effect:'SHIELD' },
-  { id:'pluie_fleches',    name:'Pluie de Flèches',      level:40, base:1,   dofus:'Cra',      desc:'Frappe l\'ennemi 4 fois pour 15 à 25 dégâts chacune.',                    emoji:'🌧️', effect:'MULTI_HIT' },
-  { id:'transcendance',    name:'Transcendance',         level:40, base:1,   dofus:'Sacrieur', desc:'Multiplie les dégâts de la prochaine attaque par 2.5.',                    emoji:'🔥', effect:'DOUBLE_STRIKE' },
-  { id:'fureur_divine',    name:'Fureur Divine',         level:45, base:1,   dofus:'Iop',      desc:'Inflige 65 à 100 dégâts, ignorant l\'esquive ennemie.',                   emoji:'⚡', effect:'DAMAGE' },
-  { id:'epee_destin',      name:'Épée du Destin',        level:50, base:0.5, dofus:'Iop',      desc:'Inflige 90 à 140 dégâts dévastateurs, ignorant l\'esquive ennemie.',       emoji:'🗡️', effect:'DAMAGE' },
+  // ── Niveau 1
+  { id:'amplification',    name:'Amplification',          level:1,  base:5,   dofus:'Iop',      desc:'Inflige 4 à 10 dégâts bonus.',                                            emoji:'⚡', effect:'DAMAGE' },
+  { id:'soin_rapide',      name:'Soin Rapide',             level:1,  base:5,   dofus:'Eniripsa', desc:'Restaure 10 à 18% des PV max.',                                           emoji:'💚', effect:'HEAL' },
+  { id:'coup_traitre',     name:'Coup Traître',            level:1,  base:6,   dofus:'Sram',     desc:'Frappe sournoise dans le dos : 3 à 9 dégâts.',                            emoji:'🗡️', effect:'DAMAGE' },
+  { id:'vitalite',         name:'Vitalité',                level:1,  base:5,   dofus:'Eniripsa', desc:'Légère régénération préventive : 6 à 12% des PV max.',                    emoji:'🌿', effect:'HEAL' },
+  // ── Niveau 5
+  { id:'fleche_perforante',name:'Flèche Perforante',       level:5,  base:4,   dofus:'Cra',      desc:'12 à 22 dégâts, ignore l\'esquive.',                                      emoji:'🏹', effect:'DAMAGE' },
+  { id:'deceleration',     name:'Décélération',            level:5,  base:4,   dofus:'Xelor',    desc:'L\'ennemi rate sa contre-attaque ce tour.',                               emoji:'⏳', effect:'SKIP_ATTACK' },
+  { id:'tir_precis',       name:'Tir Précis',              level:5,  base:4,   dofus:'Cra',      desc:'Tir imparable : 10 à 20 dégâts directs.',                                emoji:'🎯', effect:'DAMAGE' },
+  { id:'brise_moral',      name:'Brise-Moral',             level:5,  base:4.5, dofus:'Xelor',    desc:'Brise la confiance ennemie : -10% dégâts jusqu\'à la fin.',               emoji:'🌀', effect:'DEBUFF_DAMAGE' },
+  // ── Niveau 10
+  { id:'bouclier_feca',    name:'Bouclier de Féca',        level:10, base:4,   dofus:'Féca',     desc:'Bouclier de 20 à 35 dégâts.',                                            emoji:'🛡️', effect:'SHIELD' },
+  { id:'chatiment',        name:'Châtiment',               level:10, base:3,   dofus:'Sacrieur', desc:'20 à 35 dégâts, soigne 50% infligés.',                                   emoji:'🩸', effect:'LIFESTEAL' },
+  { id:'immobilisation',   name:'Immobilisation',          level:10, base:3.5, dofus:'Xelor',    desc:'Fige l\'ennemi : rate sa prochaine contre-attaque.',                      emoji:'❄️', effect:'SKIP_ATTACK' },
+  { id:'lame_sacree',      name:'Lame Sacrée',             level:10, base:3,   dofus:'Iop',      desc:'Frappe bénie : 15 à 28 dégâts.',                                         emoji:'⚔️', effect:'DAMAGE' },
+  // ── Niveau 15
+  { id:'ebranlement',      name:'Ébranlement',             level:15, base:3,   dofus:'Iop',      desc:'Inflige 25 à 40 dégâts.',                                                emoji:'💥', effect:'DAMAGE' },
+  { id:'grace_divine',     name:'Grâce Divine',            level:15, base:3,   dofus:'Eniripsa', desc:'Restaure 20 à 30% des PV max.',                                          emoji:'✨', effect:'HEAL' },
+  { id:'morsure_sram',     name:'Morsure du Sram',         level:15, base:3,   dofus:'Sram',     desc:'14 à 25 dégâts, soigne 40% infligés.',                                   emoji:'🦷', effect:'LIFESTEAL' },
+  { id:'salve',            name:'Salve',                   level:15, base:3.5, dofus:'Cra',      desc:'Double tir rapide : 2 × 8 à 15 dégâts.',                                emoji:'🌟', effect:'MULTI_HIT' },
+  // ── Niveau 20
+  { id:'double_frappe',    name:'Double Frappe',           level:20, base:2.5, dofus:'Sram',     desc:'2 × 15 à 25 dégâts.',                                                    emoji:'👊', effect:'MULTI_HIT' },
+  { id:'epines_sram',      name:'Épines du Sram',          level:20, base:2.5, dofus:'Sram',     desc:'15 à 25 dégâts + ennemi -15% dégâts.',                                   emoji:'🌵', effect:'DEBUFF_DAMAGE' },
+  { id:'armure_sacree',    name:'Armure Sacrée',           level:20, base:2.5, dofus:'Féca',     desc:'Armure divine : absorbe 28 à 42 dégâts.',                                emoji:'🪬', effect:'SHIELD' },
+  { id:'cri_guerre',       name:'Cri de Guerre',           level:20, base:2.5, dofus:'Iop',      desc:'Cri dévastateur : ennemi -15% dégâts.',                                  emoji:'📣', effect:'DEBUFF_DAMAGE' },
+  // ── Niveau 25
+  { id:'tromperie',        name:'Tromperie',               level:25, base:2.5, dofus:'Sram',     desc:'Ennemi -20% dégâts jusqu\'à la fin.',                                    emoji:'🎭', effect:'DEBUFF_DAMAGE' },
+  { id:'rafale',           name:'Rafale',                  level:25, base:2,   dofus:'Cra',      desc:'3 × 12 à 20 dégâts.',                                                    emoji:'🌪️', effect:'MULTI_HIT' },
+  { id:'triple_frappe',    name:'Triple Frappe',           level:25, base:2,   dofus:'Sram',     desc:'Trois coups en un éclair : 3 × 8 à 15 dégâts.',                          emoji:'⚡', effect:'MULTI_HIT' },
+  { id:'soins_profonds',   name:'Soins Profonds',          level:25, base:2,   dofus:'Eniripsa', desc:'Guérison intensive : 22 à 32% des PV max.',                               emoji:'💊', effect:'HEAL' },
+  // ── Niveau 30
+  { id:'mot_prevention',   name:'Mot de Prévention',       level:30, base:2,   dofus:'Eniripsa', desc:'Survit une fois à un coup fatal (reste à 1 PV).',                         emoji:'🕊️', effect:'SURVIVE' },
+  { id:'coup_poing_iop',   name:'Coup de Poing du Iop',    level:30, base:2,   dofus:'Iop',      desc:'Frappe surpuissante : 45 à 70 dégâts.',                                  emoji:'🥊', effect:'DAMAGE' },
+  { id:'frappe_spirituelle',name:'Frappe Spirituelle',     level:30, base:2,   dofus:'Féca',     desc:'Attaque imparable : 38 à 58 dégâts, ignore l\'esquive.',                  emoji:'🔮', effect:'DAMAGE' },
+  { id:'drain_vital',      name:'Drain Vital',             level:30, base:1.5, dofus:'Sacrieur', desc:'28 à 45 dégâts, soigne 60% infligés.',                                   emoji:'🫀', effect:'LIFESTEAL' },
+  // ── Niveau 35
+  { id:'absorption',       name:'Absorption',              level:35, base:1.5, dofus:'Sacrieur', desc:'40 à 65 dégâts, soigne 100% infligés.',                                  emoji:'🧛', effect:'LIFESTEAL' },
+  { id:'mur_feca',         name:'Mur de Féca',             level:35, base:1.5, dofus:'Féca',     desc:'Rempart : absorbe 55 à 80 dégâts.',                                      emoji:'🏰', effect:'SHIELD' },
+  { id:'deluge_fleches',   name:'Déluge de Flèches',       level:35, base:1.5, dofus:'Cra',      desc:'Déluge : 4 × 8 à 15 dégâts.',                                            emoji:'🌨️', effect:'MULTI_HIT' },
+  { id:'puissance_double', name:'Puissance Doublée',       level:35, base:2,   dofus:'Sacrieur', desc:'Prochain coup inflige ×2.0 dégâts.',                                     emoji:'💫', effect:'DOUBLE_STRIKE' },
+  // ── Niveau 40
+  { id:'pluie_fleches',    name:'Pluie de Flèches',        level:40, base:1,   dofus:'Cra',      desc:'4 × 15 à 25 dégâts.',                                                    emoji:'🌧️', effect:'MULTI_HIT' },
+  { id:'transcendance',    name:'Transcendance',           level:40, base:1,   dofus:'Sacrieur', desc:'Prochain coup inflige ×2.5 dégâts.',                                     emoji:'🔥', effect:'DOUBLE_STRIKE' },
+  { id:'citadelle',        name:'Citadelle',               level:40, base:1,   dofus:'Féca',     desc:'Rempart infranchissable : absorbe 75 à 100 dégâts.',                     emoji:'🏯', effect:'SHIELD' },
+  { id:'depouille',        name:'Dépouille',               level:40, base:1,   dofus:'Sram',     desc:'25 à 45 dégâts + ennemi -25% dégâts.',                                   emoji:'💀', effect:'DEBUFF_DAMAGE' },
+  // ── Niveau 45
+  { id:'fureur_divine',    name:'Fureur Divine',           level:45, base:1,   dofus:'Iop',      desc:'65 à 100 dégâts imparables.',                                            emoji:'🌟', effect:'DAMAGE' },
+  { id:'mega_soin',        name:'Méga Soin',               level:45, base:1,   dofus:'Eniripsa', desc:'Guérison quasi-totale : 35 à 45% des PV max.',                            emoji:'💖', effect:'HEAL' },
+  // ── Niveau 50
+  { id:'epee_destin',      name:'Épée du Destin',          level:50, base:0.5, dofus:'Iop',      desc:'90 à 140 dégâts dévastateurs, ignore l\'esquive.',                       emoji:'⚔️', effect:'DAMAGE' },
+  { id:'jugement_divin',   name:'Jugement Divin',          level:50, base:0.5, dofus:'Féca',     desc:'75 à 120 dégâts implacables, ignore l\'esquive.',                        emoji:'☄️', effect:'DAMAGE' },
 ];
 
 // ── State ────────────────────────────────────────────────────────────────────

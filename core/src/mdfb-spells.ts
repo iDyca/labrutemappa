@@ -214,6 +214,208 @@ export const MDFB_SPELLS: SpellDef[] = [
     description: 'Inflige 90 à 140 dégâts dévastateurs, ignorant l\'esquive ennemie.',
     effect: { type: 'DAMAGE', minVal: 90, maxVal: 140 },
   },
+
+  // ── Niveau 1 (suppléments) ────────────────────────────────────────────────
+  {
+    id: 'coup_traitre',
+    name: 'Coup Traître',
+    levelUnlock: 1,
+    baseTriggerChance: 6,
+    dofusClass: 'Sram',
+    description: 'Frappe sournoise dans le dos : 3 à 9 dégâts.',
+    effect: { type: 'DAMAGE', minVal: 3, maxVal: 9 },
+  },
+  {
+    id: 'vitalite',
+    name: 'Vitalité',
+    levelUnlock: 1,
+    baseTriggerChance: 5,
+    dofusClass: 'Eniripsa',
+    description: 'Légère régénération préventive : restaure 6 à 12% des PV max.',
+    effect: { type: 'HEAL', minVal: 6, maxVal: 12 },
+  },
+
+  // ── Niveau 5 (suppléments) ────────────────────────────────────────────────
+  {
+    id: 'tir_precis',
+    name: 'Tir Précis',
+    levelUnlock: 5,
+    baseTriggerChance: 4,
+    dofusClass: 'Cra',
+    description: 'Tir impossible à esquiver : 10 à 20 dégâts directs.',
+    effect: { type: 'DAMAGE', minVal: 10, maxVal: 20 },
+  },
+  {
+    id: 'brise_moral',
+    name: 'Brise-Moral',
+    levelUnlock: 5,
+    baseTriggerChance: 4.5,
+    dofusClass: 'Xelor',
+    description: 'Brise la confiance ennemie : -10% dégâts jusqu\'à la fin du combat.',
+    effect: { type: 'DEBUFF_DAMAGE', debuffRatio: 0.10 },
+  },
+
+  // ── Niveau 10 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'immobilisation',
+    name: 'Immobilisation',
+    levelUnlock: 10,
+    baseTriggerChance: 3.5,
+    dofusClass: 'Xelor',
+    description: 'Fige l\'ennemi dans le temps : il rate sa prochaine contre-attaque.',
+    effect: { type: 'SKIP_ATTACK' },
+  },
+  {
+    id: 'lame_sacree',
+    name: 'Lame Sacrée',
+    levelUnlock: 10,
+    baseTriggerChance: 3,
+    dofusClass: 'Iop',
+    description: 'Frappe bénie et tranchante : 15 à 28 dégâts.',
+    effect: { type: 'DAMAGE', minVal: 15, maxVal: 28 },
+  },
+
+  // ── Niveau 15 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'morsure_sram',
+    name: 'Morsure du Sram',
+    levelUnlock: 15,
+    baseTriggerChance: 3,
+    dofusClass: 'Sram',
+    description: 'Morsure vampirique : 14 à 25 dégâts et soigne 40% des dégâts infligés.',
+    effect: { type: 'LIFESTEAL', minVal: 14, maxVal: 25, healRatio: 0.4 },
+  },
+  {
+    id: 'salve',
+    name: 'Salve',
+    levelUnlock: 15,
+    baseTriggerChance: 3.5,
+    dofusClass: 'Cra',
+    description: 'Double tir rapide : 2 × 8 à 15 dégâts.',
+    effect: { type: 'MULTI_HIT', minVal: 8, maxVal: 15, hits: 2 },
+  },
+
+  // ── Niveau 20 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'armure_sacree',
+    name: 'Armure Sacrée',
+    levelUnlock: 20,
+    baseTriggerChance: 2.5,
+    dofusClass: 'Féca',
+    description: 'Armure divine : génère un bouclier de 28 à 42 dégâts.',
+    effect: { type: 'SHIELD', minVal: 28, maxVal: 42 },
+  },
+  {
+    id: 'cri_guerre',
+    name: 'Cri de Guerre',
+    levelUnlock: 20,
+    baseTriggerChance: 2.5,
+    dofusClass: 'Iop',
+    description: 'Cri de guerre dévastateur : réduit les dégâts ennemis de 15%.',
+    effect: { type: 'DEBUFF_DAMAGE', debuffRatio: 0.15 },
+  },
+
+  // ── Niveau 25 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'triple_frappe',
+    name: 'Triple Frappe',
+    levelUnlock: 25,
+    baseTriggerChance: 2,
+    dofusClass: 'Sram',
+    description: 'Trois coups en un éclair : 3 × 8 à 15 dégâts.',
+    effect: { type: 'MULTI_HIT', minVal: 8, maxVal: 15, hits: 3 },
+  },
+  {
+    id: 'soins_profonds',
+    name: 'Soins Profonds',
+    levelUnlock: 25,
+    baseTriggerChance: 2,
+    dofusClass: 'Eniripsa',
+    description: 'Guérison intensive : restaure 22 à 32% des PV max.',
+    effect: { type: 'HEAL', minVal: 22, maxVal: 32 },
+  },
+
+  // ── Niveau 30 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'frappe_spirituelle',
+    name: 'Frappe Spirituelle',
+    levelUnlock: 30,
+    baseTriggerChance: 2,
+    dofusClass: 'Féca',
+    description: 'Attaque imparable, ignorant l\'esquive : 38 à 58 dégâts.',
+    effect: { type: 'DAMAGE', minVal: 38, maxVal: 58 },
+  },
+  {
+    id: 'drain_vital',
+    name: 'Drain Vital',
+    levelUnlock: 30,
+    baseTriggerChance: 1.5,
+    dofusClass: 'Sacrieur',
+    description: 'Aspiration vitale : 28 à 45 dégâts et soigne 60% des dégâts infligés.',
+    effect: { type: 'LIFESTEAL', minVal: 28, maxVal: 45, healRatio: 0.6 },
+  },
+
+  // ── Niveau 35 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'deluge_fleches',
+    name: 'Déluge de Flèches',
+    levelUnlock: 35,
+    baseTriggerChance: 1.5,
+    dofusClass: 'Cra',
+    description: 'Déluge de projectiles : 4 × 8 à 15 dégâts.',
+    effect: { type: 'MULTI_HIT', minVal: 8, maxVal: 15, hits: 4 },
+  },
+  {
+    id: 'puissance_double',
+    name: 'Puissance Doublée',
+    levelUnlock: 35,
+    baseTriggerChance: 2,
+    dofusClass: 'Sacrieur',
+    description: 'Puissance décuplée : prochain coup inflige ×2.0 dégâts.',
+    effect: { type: 'DOUBLE_STRIKE', minVal: 2.0 },
+  },
+
+  // ── Niveau 40 (suppléments) ───────────────────────────────────────────────
+  {
+    id: 'citadelle',
+    name: 'Citadelle',
+    levelUnlock: 40,
+    baseTriggerChance: 1,
+    dofusClass: 'Féca',
+    description: 'Rempart infranchissable : absorbe 75 à 100 dégâts.',
+    effect: { type: 'SHIELD', minVal: 75, maxVal: 100 },
+  },
+  {
+    id: 'depouille',
+    name: 'Dépouille',
+    levelUnlock: 40,
+    baseTriggerChance: 1,
+    dofusClass: 'Sram',
+    description: 'Affaiblissement total : 25 à 45 dégâts + ennemi -25% dégâts.',
+    effect: { type: 'DEBUFF_DAMAGE', minVal: 25, maxVal: 45, debuffRatio: 0.25 },
+  },
+
+  // ── Niveau 45 (supplément) ────────────────────────────────────────────────
+  {
+    id: 'mega_soin',
+    name: 'Méga Soin',
+    levelUnlock: 45,
+    baseTriggerChance: 1,
+    dofusClass: 'Eniripsa',
+    description: 'Guérison quasi-totale : restaure 35 à 45% des PV max.',
+    effect: { type: 'HEAL', minVal: 35, maxVal: 45 },
+  },
+
+  // ── Niveau 50 (supplément) ────────────────────────────────────────────────
+  {
+    id: 'jugement_divin',
+    name: 'Jugement Divin',
+    levelUnlock: 50,
+    baseTriggerChance: 0.5,
+    dofusClass: 'Féca',
+    description: 'Jugement implacable, ignorant l\'esquive : 75 à 120 dégâts.',
+    effect: { type: 'DAMAGE', minVal: 75, maxVal: 120 },
+  },
 ];
 
 /** Returns the SpellDef for a given id, or undefined if not found. */
