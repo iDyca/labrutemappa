@@ -1036,17 +1036,19 @@ model MdfbPlayer {
   totalMatches     Int                @default(0)
   critsTotal       Int                @default(0)
   quickWins        Int                @default(0)
-  statsHP          Int                @default(100)
-  statsSTR         Int                @default(10)
-  statsAGI         Int                @default(10)
-  statsSPD         Int                @default(10)
-  statsWIS         Int                @default(10)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  itemInstances    MdfbItemInstance[]
-  achievements     MdfbAchievement[]
-  chests           MdfbChest[]
-  identityCounters Json               @default("{}")
+  statsHP              Int                @default(100)
+  // Dofus-inspired stat system — points invested by the player each level
+  investedFORCE        Int                @default(0)
+  investedAGILITE      Int                @default(0)
+  investedINTELLIGENCE Int                @default(0)
+  investedCHANCE       Int                @default(0)
+  freePoints           Int                @default(0)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  itemInstances        MdfbItemInstance[]
+  achievements         MdfbAchievement[]
+  chests               MdfbChest[]
+  identityCounters     Json               @default("{}")
 
   @@index([userId])
 }
