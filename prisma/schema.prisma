@@ -1052,6 +1052,8 @@ model MdfbPlayer {
   achievements         MdfbAchievement[]
   chests               MdfbChest[]
   identityCounters     Json               @default("{}")
+  unlockedSpells       String[]           @default([])
+  equippedSpells       String[]           @default([])
 
   @@index([userId])
   @@index([level])

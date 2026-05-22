@@ -1,3 +1,5 @@
+import { getSpellDef } from './mdfb-spells.js';
+
 export interface Fighter {
   id: string;
   name: string;
@@ -11,6 +13,7 @@ export interface Fighter {
   CHANCE: number;
   loadout: Record<string, { defId: string; rolled: Record<string, number>; effect?: string }>;
   isAI?: boolean;
+  equippedSpells?: string[];
 }
 
 export interface CombatEvent {
@@ -66,6 +69,14 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
   const identityCounters: Record<string, number> = {};
   let tenacityUsed = false;
 
+  // ─── Spell state ─────────────────────────────────────────────────────────────
+  const spellTriggered: Record<string, Set<string>> = { [a.id]: new Set(), [b.id]: new Set() };
+  const shieldHP: Record<string, number> = { [a.id]: 0, [b.id]: 0 };
+  const skipNextAttack: Record<string, boolean> = { [a.id]: false, [b.id]: false };
+  const damageMultiplier: Record<string, number> = { [a.id]: 1, [b.id]: 1 };
+  const strikeMultiplier: Record<string, number> = { [a.id]: 1, [b.id]: 1 };
+  const spellSurvive: Record<string, boolean> = { [a.id]: false, [b.id]: false };
+
   // Effective stats with loadout bonuses
   const aFORCE  = a.FORCE  + getLoadoutBonus(a, 'FORCE');
   const aAGI    = a.AGILITE + getLoadoutBonus(a, 'AGILITE');
@@ -107,6 +118,108 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
     [defF, defAGI, defINT, defCHANCE] = [bFORCE, bAGI, bINT, bCHANCE];
     aHP = effectiveMaxHP[a.id] ?? a.HP;
     dHP = effectiveMaxHP[b.id] ?? b.HP;
+  }
+
+  // ─── applySpells closure ─────────────────────────────────────────────────────
+  function applySpells(
+    actor: Fighter, target: Fighter,
+    actorHP: number, targetHP: number,
+  ): { actorHP: number; targetHP: number } {
+    for (const spellId of (actor.equippedSpells ?? [])) {
+      if (spellTriggered[actor.id]!.has(spellId)) continue;
+      const spell = getSpellDef(spellId);
+      if (!spell) continue;
+      const maxHP = effectiveMaxHP[actor.id] ?? actor.maxHP;
+      const triggerChance = Math.min(95, spell.baseTriggerChance + (1 - actorHP / maxHP) * 100);
+      if (Math.random() * 100 >= triggerChance) continue;
+      spellTriggered[actor.id]!.add(spellId);
+      const { effect } = spell;
+      const r = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+      const targetMaxHP = effectiveMaxHP[target.id] ?? target.maxHP;
+
+      switch (effect.type) {
+        case 'DAMAGE': {
+          const dmg = r(effect.minVal!, effect.maxVal!);
+          targetHP = Math.max(0, targetHP - dmg);
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! ${dmg} dégâts bonus sur ${target.name}`,
+            damage: dmg, targetHP, targetMaxHP });
+          break;
+        }
+        case 'HEAL': {
+          const healed = Math.floor(r(effect.minVal!, effect.maxVal!) / 100 * maxHP);
+          actorHP = Math.min(maxHP, actorHP + healed);
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! +${healed} PV récupérés`,
+            targetHP: actorHP, targetMaxHP: maxHP });
+          break;
+        }
+        case 'SHIELD': {
+          const shield = r(effect.minVal!, effect.maxVal!);
+          shieldHP[actor.id] = (shieldHP[actor.id] ?? 0) + shield;
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! Bouclier de ${shield} PV activé` });
+          break;
+        }
+        case 'LIFESTEAL': {
+          const dmg = r(effect.minVal!, effect.maxVal!);
+          const healed = Math.floor(dmg * (effect.healRatio ?? 0.5));
+          targetHP = Math.max(0, targetHP - dmg);
+          actorHP = Math.min(maxHP, actorHP + healed);
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! ${dmg} dégâts + ${healed} PV volés`,
+            damage: dmg, targetHP, targetMaxHP });
+          break;
+        }
+        case 'SKIP_ATTACK': {
+          skipNextAttack[target.id] = true;
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! ${target.name} rate sa prochaine attaque` });
+          break;
+        }
+        case 'DEBUFF_DAMAGE': {
+          damageMultiplier[target.id] = (damageMultiplier[target.id] ?? 1) * (1 - (effect.debuffRatio ?? 0.15));
+          if (effect.minVal && effect.maxVal) {
+            const dmg = r(effect.minVal, effect.maxVal);
+            targetHP = Math.max(0, targetHP - dmg);
+            events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+              message: `✨ ${spell.name} ! ${dmg} dégâts + ${target.name} affaibli (-${Math.round((effect.debuffRatio ?? 0.15) * 100)}% dégâts)`,
+              damage: dmg, targetHP, targetMaxHP });
+          } else {
+            events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+              message: `✨ ${spell.name} ! ${target.name} affaibli (-${Math.round((effect.debuffRatio ?? 0.20) * 100)}% dégâts)` });
+          }
+          break;
+        }
+        case 'MULTI_HIT': {
+          const hits = effect.hits ?? 2;
+          let totalDmg = 0;
+          for (let i = 0; i < hits; i++) {
+            const d = r(effect.minVal!, effect.maxVal!);
+            totalDmg += d;
+            targetHP = Math.max(0, targetHP - d);
+            if (targetHP <= 0) break;
+          }
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! ${hits} frappes pour ${totalDmg} dégâts totaux`,
+            damage: totalDmg, targetHP, targetMaxHP });
+          break;
+        }
+        case 'SURVIVE': {
+          spellSurvive[actor.id] = true;
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! Barrière de vie activée sur ${actor.name}` });
+          break;
+        }
+        case 'DOUBLE_STRIKE': {
+          strikeMultiplier[actor.id] = effect.minVal ?? 2.5;
+          events.push({ turn, actorId: actor.id, actorName: actor.name, type: 'PASSIVE',
+            message: `✨ ${spell.name} ! Prochain coup ×${effect.minVal ?? 2.5}` });
+          break;
+        }
+      }
+    }
+    return { actorHP, targetHP };
   }
 
   function strikeOnce(
@@ -173,6 +286,13 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       dmg = Math.floor(dmg * (1 + count * 0.02));
     }
 
+    // Apply outgoing damage multiplier (from DEBUFF_DAMAGE spells on actor)
+    dmg = Math.floor(dmg * (damageMultiplier[actor.id] ?? 1));
+
+    // Apply DOUBLE_STRIKE multiplier (Transcendance)
+    dmg = Math.floor(dmg * (strikeMultiplier[actor.id] ?? 1));
+    strikeMultiplier[actor.id] = 1;
+
     // DMG_REDUCE3 (belt effect) — applied to target
     if (hasEffect(target, 'DMG_REDUCE3')) {
       dmg = Math.max(1, Math.floor(dmg * 0.97));
@@ -183,6 +303,11 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       actorHP = Math.max(0, actorHP - 1);
     }
 
+    // SHIELD absorption — applied before reducing targetHP
+    const absorbed = Math.min(shieldHP[target.id] ?? 0, dmg);
+    shieldHP[target.id] = (shieldHP[target.id] ?? 0) - absorbed;
+    dmg = Math.max(0, dmg - absorbed);
+
     targetHP = Math.max(0, targetHP - dmg);
 
     // Ténacité PierreLBZ
@@ -192,6 +317,14 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       identityCounters['pierrelbz_tenacite'] = (identityCounters['pierrelbz_tenacite'] || 0) + 1;
       events.push({ turn, actorId: target.id, actorName: target.name, type: 'PASSIVE',
         message: `💪 Ténacité ! ${target.name} survit à 1 PV !` });
+    }
+
+    // Spell SURVIVE — survives a fatal blow at 1 HP (not for PIERRELBZ who has tenacity)
+    if (target.characterKey !== 'PIERRELBZ' && targetHP <= 0 && spellSurvive[target.id]) {
+      targetHP = 1;
+      spellSurvive[target.id] = false;
+      events.push({ turn, actorId: target.id, actorName: target.name, type: 'PASSIVE',
+        message: `✨ Mot de Prévention ! ${target.name} survit à 1 PV grâce à la barrière !` });
     }
 
     events.push({
@@ -223,6 +356,15 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       if (dHP <= 0) break;
     }
 
+    // Appliquer sorts de l'attaquant avant son coup
+    const sa = applySpells(attacker, defender, aHP, dHP);
+    aHP = sa.actorHP; dHP = sa.targetHP;
+    if (dHP <= 0) break;
+
+    // Check SKIP_ATTACK for defender (set by attacker's Décélération spell)
+    const defenderSkips = skipNextAttack[defender.id] ?? false;
+    if (defenderSkips) skipNextAttack[defender.id] = false;
+
     // Attacker strikes
     const berserkBonus = (hasEffect(attacker, 'BERSERK') && identityCounters['berserk_active'])
       ? 5 : 0;
@@ -232,13 +374,20 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
     aHP = res.actorHP; dHP = res.targetHP;
     if (res.killed || dHP <= 0) break;
 
-    // Defender strikes back
-    const defBerserk = (hasEffect(defender, 'BERSERK') && identityCounters['berserk_active']) ? 5 : 0;
-    const res2 = strikeOnce(defender, attacker,
-      defF + defBerserk, defINT, defCHANCE, atkINT,
-      dHP, aHP);
-    dHP = res2.actorHP; aHP = res2.targetHP;
-    if (res2.killed || aHP <= 0) break;
+    // Appliquer sorts du défenseur avant sa contre-attaque
+    const sd = applySpells(defender, attacker, dHP, aHP);
+    dHP = sd.actorHP; aHP = sd.targetHP;
+    if (aHP <= 0) break;
+
+    // Defender strikes back (unless skipping due to SKIP_ATTACK)
+    if (!defenderSkips) {
+      const defBerserk = (hasEffect(defender, 'BERSERK') && identityCounters['berserk_active']) ? 5 : 0;
+      const res2 = strikeOnce(defender, attacker,
+        defF + defBerserk, defINT, defCHANCE, atkINT,
+        dHP, aHP);
+      dHP = res2.actorHP; aHP = res2.targetHP;
+      if (res2.killed || aHP <= 0) break;
+    }
   }
 
   const attackerWon = aHP > 0;

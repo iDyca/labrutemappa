@@ -11,6 +11,11 @@ import {
   openChestForLevel,
   rollItemInstance,
   simulateCombat,
+  MDFB_SPELLS,
+  getSpellDef,
+  getSpellChoices,
+  computeLevelFromXP,
+  totalXPForLevel,
 } from '@labrute/core';
 import type { Fighter, ChestType } from '@labrute/core';
 
@@ -34,6 +39,7 @@ function buildFighter(player: {
   investedINTELLIGENCE: number;
   investedCHANCE: number;
   itemInstances: Array<{ itemDefId: string; rolledStats: unknown; equippedSlot: string | null }>;
+  equippedSpells: string[];
 }): Fighter {
   const charKey = CHARACTER_KEYS.includes(player.characterKey as never)
     ? (player.characterKey as keyof typeof MDFB_CHARACTERS)
@@ -70,6 +76,7 @@ function buildFighter(player: {
     INTELLIGENCE: stats.INTELLIGENCE,
     CHANCE: stats.CHANCE,
     loadout,
+    equippedSpells: player.equippedSpells,
   };
 }
 
@@ -180,6 +187,9 @@ export const launchFight = (prisma: PrismaClient) => async (req: Request, res: R
     }),
   ]);
 
+  // NOTE: Prisma typings may not include unlockedSpells/equippedSpells yet if migration hasn't run.
+  // We cast to any to safely access them.
+
   if (!attacker || !defender) {
     res.status(404).json({ error: 'Joueur introuvable' });
     return;
@@ -197,7 +207,12 @@ export const launchFight = (prisma: PrismaClient) => async (req: Request, res: R
   }
 
   // Simulate combat
-  const result = simulateCombat(buildFighter(attacker), buildFighter(defender));
+  const attackerAny = attacker as typeof attacker & { equippedSpells?: string[]; unlockedSpells?: string[] };
+  const defenderAny = defender as typeof defender & { equippedSpells?: string[] };
+  const result = simulateCombat(
+    buildFighter({ ...attacker, equippedSpells: attackerAny.equippedSpells ?? [] }),
+    buildFighter({ ...defender, equippedSpells: defenderAny.equippedSpells ?? [] }),
+  );
   const won = result.winnerId === attacker.id;
   const newStreak = won ? attacker.winStreak + 1 : 0;
   const newVictories = won ? attacker.victories + 1 : attacker.victories;
@@ -221,11 +236,24 @@ export const launchFight = (prisma: PrismaClient) => async (req: Request, res: R
     unlocked: unlockedIds,
   });
 
+  // Compute level-up
+  const newTotalXP = attacker.xp + result.xpGain;
+  const newLevel = computeLevelFromXP(newTotalXP);
+  const leveledUp = newLevel > attacker.level;
+  const gainedLevels = leveledUp
+    ? Array.from({ length: newLevel - attacker.level }, (_, i) => attacker.level + i + 1)
+    : [];
+  const spellMilestone = gainedLevels.find(lv => lv % 5 === 0) ?? null;
+  const spellChoicesOnLevelUp = spellMilestone
+    ? getSpellChoices(spellMilestone, attackerAny.unlockedSpells ?? [])
+    : [];
+
   await prisma.$transaction(async (tx) => {
     await tx.mdfbPlayer.update({
       where: { id: attackerId },
       data: {
-        xp: { increment: result.xpGain },
+        xp: newTotalXP,
+        level: newLevel,
         gold: { increment: result.goldGain },
         victories: newVictories,
         winStreak: newStreak,
@@ -271,6 +299,10 @@ export const launchFight = (prisma: PrismaClient) => async (req: Request, res: R
     newAchievements,
     xpGain: result.xpGain,
     goldGain: result.goldGain,
+    leveledUp,
+    newLevel,
+    spellMilestone,
+    spellChoicesOnLevelUp,
   });
 };
 
@@ -338,4 +370,90 @@ export const equipItem = (prisma: PrismaClient) => async (req: Request, res: Res
   });
 
   res.json(updated);
+};
+
+// ─── Spell handlers ──────────────────────────────────────────────────────────
+
+export const getSpells = (_req: Request, res: Response) => {
+  res.json(MDFB_SPELLS);
+};
+
+export const getSpellChoicesForPlayer = (prisma: PrismaClient) => async (req: Request, res: Response) => {
+  const { playerId } = req.params;
+  const player = await prisma.mdfbPlayer.findUnique({ where: { id: playerId } });
+  if (!player) { res.status(404).json({ error: 'Player not found' }); return; }
+
+  const playerAny = player as typeof player & { unlockedSpells?: string[] };
+  const unlockedSpells = playerAny.unlockedSpells ?? [];
+  const expectedChoices = Math.floor(player.level / 5);
+  if (unlockedSpells.length >= expectedChoices) {
+    res.json({ hasPendingChoice: false, choices: [] });
+    return;
+  }
+
+  const milestone = (unlockedSpells.length + 1) * 5;
+  const choices = getSpellChoices(milestone, unlockedSpells);
+  res.json({ hasPendingChoice: true, milestone, choices });
+};
+
+export const chooseSpell = (prisma: PrismaClient) => async (req: Request, res: Response) => {
+  const { playerId } = req.params;
+  const { spellId } = req.body as { spellId?: string };
+  if (!spellId) { res.status(400).json({ error: 'spellId requis' }); return; }
+
+  const player = await prisma.mdfbPlayer.findUnique({ where: { id: playerId } });
+  if (!player) { res.status(404).json({ error: 'Player not found' }); return; }
+
+  const playerAny = player as typeof player & { unlockedSpells?: string[] };
+  const unlockedSpells = playerAny.unlockedSpells ?? [];
+  const expectedChoices = Math.floor(player.level / 5);
+  if (unlockedSpells.length >= expectedChoices) {
+    res.status(400).json({ error: 'Pas de choix de sort disponible' }); return;
+  }
+
+  const spell = getSpellDef(spellId);
+  if (!spell) { res.status(400).json({ error: 'Sort invalide' }); return; }
+  if (spell.levelUnlock > player.level) { res.status(400).json({ error: 'Niveau insuffisant' }); return; }
+  if (unlockedSpells.includes(spellId)) { res.status(400).json({ error: 'Sort déjà débloqué' }); return; }
+
+  const updated = await (prisma.mdfbPlayer as unknown as { update: Function }).update({
+    where: { id: playerId },
+    data: { unlockedSpells: { push: spellId } },
+  });
+  res.json(updated);
+};
+
+export const manageEquippedSpell = (prisma: PrismaClient) => async (req: Request, res: Response) => {
+  const { playerId, spellId, action } = req.body as { playerId?: string; spellId?: string; action?: 'equip' | 'unequip' };
+  if (!playerId || !spellId || !action) { res.status(400).json({ error: 'playerId, spellId et action requis' }); return; }
+
+  const player = await prisma.mdfbPlayer.findUnique({ where: { id: playerId } });
+  if (!player) { res.status(404).json({ error: 'Player not found' }); return; }
+
+  const playerAny = player as typeof player & { unlockedSpells?: string[]; equippedSpells?: string[] };
+  const unlockedSpells = playerAny.unlockedSpells ?? [];
+  const equippedSpells = playerAny.equippedSpells ?? [];
+
+  if (action === 'equip') {
+    if (!unlockedSpells.includes(spellId)) {
+      res.status(400).json({ error: 'Sort non débloqué' }); return;
+    }
+    if (equippedSpells.includes(spellId)) {
+      res.status(400).json({ error: 'Sort déjà équipé' }); return;
+    }
+    if (equippedSpells.length >= 2) {
+      res.status(400).json({ error: 'Maximum 2 sorts équipés' }); return;
+    }
+    const updated = await (prisma.mdfbPlayer as unknown as { update: Function }).update({
+      where: { id: playerId },
+      data: { equippedSpells: { push: spellId } },
+    });
+    res.json(updated);
+  } else {
+    const updated = await (prisma.mdfbPlayer as unknown as { update: Function }).update({
+      where: { id: playerId },
+      data: { equippedSpells: equippedSpells.filter((s: string) => s !== spellId) },
+    });
+    res.json(updated);
+  }
 };

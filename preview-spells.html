@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Système de Sorts — MDFB</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1a1a2e; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+  h1 { color: #f0c040; font-size: 22px; margin-bottom: 6px; }
+  h2 { color: #a0c8ff; font-size: 16px; margin: 20px 0 10px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+  h3 { color: #d0d0d0; font-size: 13px; margin: 14px 0 6px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .subtitle { font-size: 12px; color: #666; margin-bottom: 20px; }
+
+  /* ── Formula box ── */
+  .formula-box {
+    background: #16213e; border-radius: 10px; padding: 14px 18px;
+    border-left: 4px solid #a855f7; margin-bottom: 20px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .formula-box strong { color: #f0c040; }
+  .formula-box code { background: #0d1117; padding: 1px 6px; border-radius: 3px; color: #7dd3fc; font-size: 11px; }
+
+  /* ── Effect type badges ── */
+  .badge {
+    display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 3px;
+    font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 4px;
+    vertical-align: middle;
+  }
+  .badge-DAMAGE      { background: #3d1a0a; color: #ff7043; }
+  .badge-HEAL        { background: #0a2a1a; color: #4ade80; }
+  .badge-SHIELD      { background: #0a1a3d; color: #60a5fa; }
+  .badge-LIFESTEAL   { background: #2d0a2d; color: #e879f9; }
+  .badge-SKIP_ATTACK { background: #2d2a0a; color: #fbbf24; }
+  .badge-DEBUFF_DAMAGE { background: #2a0a0a; color: #f87171; }
+  .badge-MULTI_HIT   { background: #0a2a2d; color: #22d3ee; }
+  .badge-SURVIVE     { background: #1a2a0a; color: #a3e635; }
+  .badge-DOUBLE_STRIKE { background: #2a1a0a; color: #fb923c; }
+
+  /* ── Spell cards ── */
+  .spells-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .spell-card {
+    background: #16213e; border-radius: 10px; padding: 12px 14px;
+    border: 1px solid #2a2a4a; position: relative;
+    transition: border-color 0.15s;
+  }
+  .spell-card:hover { border-color: #4a4a8a; }
+  .spell-card.locked { opacity: 0.5; }
+
+  .spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .spell-emoji { font-size: 22px; flex-shrink: 0; }
+  .spell-name { font-size: 13px; font-weight: bold; color: #fff; flex: 1; }
+  .spell-level-badge {
+    font-size: 9px; background: #252540; color: #a0c8ff;
+    padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap;
+  }
+  .spell-meta { font-size: 10px; color: #888; margin-bottom: 6px; }
+  .spell-meta .class-tag {
+    display: inline-block; background: #1a1a30; border-radius: 3px;
+    padding: 1px 5px; color: #c084fc; margin-right: 4px;
+  }
+  .spell-desc { font-size: 11px; color: #b0b0c8; line-height: 1.4; margin-bottom: 6px; }
+  .spell-trigger {
+    font-size: 10px; color: #f0c040;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .trigger-bar-bg { flex: 1; background: #0d1117; border-radius: 4px; height: 5px; }
+  .trigger-bar { height: 5px; border-radius: 4px; background: linear-gradient(90deg, #a855f7, #f0c040); }
+
+  /* ── Level milestone groups ── */
+  .milestone-section { margin-bottom: 6px; }
+  .milestone-header {
+    font-size: 11px; color: #888; margin: 14px 0 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .milestone-line { flex: 1; height: 1px; background: #252540; }
+  .milestone-label { white-space: nowrap; color: #a0c8ff; font-weight: bold; }
+
+  /* ── Equipped spells panel ── */
+  .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 700px) { .panel-grid { grid-template-columns: 1fr; } }
+
+  .equipped-panel {
+    background: #16213e; border-radius: 10px; padding: 14px;
+    border: 1px solid #2a2a4a;
+  }
+  .equipped-panel h3 { color: #a0c8ff; margin-bottom: 10px; font-size: 13px; }
+
+  .equipped-slots { display: flex; gap: 8px; margin-bottom: 12px; }
+  .spell-slot {
+    flex: 1; min-height: 60px; border-radius: 8px; border: 2px dashed #3a3a5a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; color: #555; cursor: pointer; transition: border-color 0.15s;
+    padding: 6px; text-align: center; background: #0d1117;
+  }
+  .spell-slot.filled { border-color: #7c3aed; border-style: solid; background: #1a1040; }
+  .spell-slot.filled .slot-emoji { font-size: 20px; }
+  .spell-slot.filled .slot-name { font-size: 9px; color: #c084fc; margin-top: 2px; font-weight: bold; }
+  .spell-slot:hover { border-color: #6a6a9a; }
+
+  .unlocked-list { display: flex; flex-direction: column; gap: 5px; }
+  .unlocked-item {
+    display: flex; align-items: center; gap: 8px;
+    background: #0d1117; border-radius: 6px; padding: 6px 10px;
+    font-size: 11px; cursor: pointer;
+    border: 1px solid transparent; transition: border-color 0.15s;
+  }
+  .unlocked-item:hover { border-color: #3a3a5a; }
+  .unlocked-item .item-emoji { font-size: 16px; flex-shrink: 0; }
+  .unlocked-item .item-info { flex: 1; }
+  .unlocked-item .item-name { font-weight: bold; color: #e0e0e0; }
+  .unlocked-item .item-class { font-size: 9px; color: #888; }
+  .unlocked-item .equip-btn {
+    font-size: 9px; background: #7c3aed; color: #fff;
+    border: none; border-radius: 3px; padding: 2px 7px; cursor: pointer;
+    font-weight: bold;
+  }
+  .unlocked-item .equip-btn.equipped { background: #374151; color: #9ca3af; }
+  .unlocked-item .equip-btn:hover:not(.equipped) { background: #6d28d9; }
+
+  /* ── Info box ── */
+  .info-box {
+    background: #16213e; border-radius: 8px; padding: 10px 14px;
+    font-size: 11px; color: #aaa; border-left: 3px solid #a0c8ff;
+    margin-bottom: 12px; line-height: 1.6;
+  }
+  .info-box strong { color: #f0c040; }
+
+  .section { margin-bottom: 28px; }
+</style>
+</head>
+<body>
+
+<h1>🪄 Système de Sorts — MDFB</h1>
+<p class="subtitle">MappadofusLaBrute — Sorts progressifs niveaux 1→50</p>
+
+<!-- ═══════════════════════ FORMULE TRIGGER ════════════════════════ -->
+<div class="formula-box">
+  <strong>Formule de déclenchement :</strong>
+  <code>chance = baseTriggerChance + missingHPPercent</code>
+  &nbsp; (cap 95%)
+  <br>
+  <code>missingHPPercent = (1 - currentHP / maxHP) × 100</code>
+  <br><br>
+  <strong>Exemple :</strong> Sort base 5%, joueur à 50% HP &rarr;
+  <code>5 + 50 = 55%</code> de déclenchement.
+  <br>
+  Un sort ne se déclenche qu'<strong>une seule fois par combat</strong>.
+  Chaque joueur peut équiper <strong>max 2 sorts</strong>.
+</div>
+
+<!-- ═══════════════════════ GRILLE DES SORTS ═════════════════════ -->
+<div class="section">
+  <h2>✨ Les 20 sorts (Niveaux 1 → 50)</h2>
+
+  <div id="spells-container"></div>
+</div>
+
+<!-- ═══════════════════════ PANEL GESTION ════════════════════════ -->
+<div class="section">
+  <h2>🎮 Gestion des Sorts (simulation visuelle)</h2>
+
+  <div class="info-box">
+    Tous les <strong>5 niveaux</strong>, le joueur reçoit <strong>1 sort</strong> choisi parmi 3 propositions.
+    Maximum <strong>2 sorts équipés</strong> simultanément.
+    Les sorts se déclenchent <strong>avant l'attaque</strong> du joueur à chaque tour.
+  </div>
+
+  <div class="panel-grid">
+    <div class="equipped-panel">
+      <h3>⚔️ Sorts équipés (max 2)</h3>
+      <div class="equipped-slots" id="equipped-slots">
+        <div class="spell-slot" id="slot-0" onclick="unequipSlot(0)">
+          <span>Emplacement 1</span>
+          <span style="font-size:18px;color:#333">🔮</span>
+        </div>
+        <div class="spell-slot" id="slot-1" onclick="unequipSlot(1)">
+          <span>Emplacement 2</span>
+          <span style="font-size:18px;color:#333">🔮</span>
+        </div>
+      </div>
+      <p style="font-size:10px;color:#555">Cliquez sur un emplacement rempli pour déséquiper.</p>
+    </div>
+
+    <div class="equipped-panel">
+      <h3>📖 Sorts débloqués</h3>
+      <div class="unlocked-list" id="unlocked-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Spell data (inline) ──────────────────────────────────────────────────────
+const SPELLS = [
+  { id:'amplification',    name:'Amplification',        level:1,  base:5,   dofus:'Iop',      desc:'Inflige 4 à 10 dégâts bonus à l\'ennemi.',                                emoji:'⚡', effect:'DAMAGE' },
+  { id:'soin_rapide',      name:'Soin Rapide',           level:1,  base:5,   dofus:'Eniripsa', desc:'Restaure 10 à 18% des PV maximum du lanceur.',                             emoji:'💚', effect:'HEAL' },
+  { id:'fleche_perforante',name:'Flèche Perforante',     level:5,  base:4,   dofus:'Cra',      desc:'Inflige 12 à 22 dégâts, ignorant l\'esquive ennemie.',                     emoji:'🏹', effect:'DAMAGE' },
+  { id:'deceleration',     name:'Décélération',          level:5,  base:4,   dofus:'Xelor',    desc:'L\'ennemi rate sa contre-attaque ce tour.',                                emoji:'⏳', effect:'SKIP_ATTACK' },
+  { id:'bouclier_feca',    name:'Bouclier de Féca',      level:10, base:4,   dofus:'Féca',     desc:'Génère un bouclier qui absorbe 20 à 35 dégâts.',                           emoji:'🛡️', effect:'SHIELD' },
+  { id:'chatiment',        name:'Châtiment',             level:10, base:3,   dofus:'Sacrieur', desc:'Inflige 20 à 35 dégâts et soigne 50% des dégâts infligés.',                emoji:'🩸', effect:'LIFESTEAL' },
+  { id:'ebranlement',      name:'Ébranlement',           level:15, base:3,   dofus:'Iop',      desc:'Inflige 25 à 40 dégâts à l\'ennemi.',                                     emoji:'💥', effect:'DAMAGE' },
+  { id:'grace_divine',     name:'Grâce Divine',          level:15, base:3,   dofus:'Eniripsa', desc:'Restaure 20 à 30% des PV maximum du lanceur.',                             emoji:'✨', effect:'HEAL' },
+  { id:'double_frappe',    name:'Double Frappe',         level:20, base:2.5, dofus:'Sram',     desc:'Frappe l\'ennemi 2 fois pour 15 à 25 dégâts chacune.',                    emoji:'👊', effect:'MULTI_HIT' },
+  { id:'epines_sram',      name:'Épines du Sram',        level:20, base:2.5, dofus:'Sram',     desc:'Inflige 15 à 25 dégâts et réduit les dégâts ennemis de 15%.',             emoji:'🌵', effect:'DEBUFF_DAMAGE' },
+  { id:'tromperie',        name:'Tromperie',             level:25, base:2.5, dofus:'Sram',     desc:'Réduit les dégâts ennemis de 20% sans bonus de dégâts.',                  emoji:'🎭', effect:'DEBUFF_DAMAGE' },
+  { id:'rafale',           name:'Rafale',                level:25, base:2,   dofus:'Cra',      desc:'Frappe l\'ennemi 3 fois pour 12 à 20 dégâts chacune.',                    emoji:'🌪️', effect:'MULTI_HIT' },
+  { id:'mot_prevention',   name:'Mot de Prévention',     level:30, base:2,   dofus:'Eniripsa', desc:'Le lanceur survit une fois avec 1 PV au lieu de mourir.',                  emoji:'🕊️', effect:'SURVIVE' },
+  { id:'coup_poing_iop',   name:'Coup de Poing du Iop',  level:30, base:2,   dofus:'Iop',      desc:'Inflige 45 à 70 dégâts à l\'ennemi.',                                     emoji:'🥊', effect:'DAMAGE' },
+  { id:'absorption',       name:'Absorption',            level:35, base:1.5, dofus:'Sacrieur', desc:'Inflige 40 à 65 dégâts et soigne 100% des dégâts infligés.',               emoji:'🧛', effect:'LIFESTEAL' },
+  { id:'mur_feca',         name:'Mur de Féca',           level:35, base:1.5, dofus:'Féca',     desc:'Génère un bouclier qui absorbe 55 à 80 dégâts.',                           emoji:'🏰', effect:'SHIELD' },
+  { id:'pluie_fleches',    name:'Pluie de Flèches',      level:40, base:1,   dofus:'Cra',      desc:'Frappe l\'ennemi 4 fois pour 15 à 25 dégâts chacune.',                    emoji:'🌧️', effect:'MULTI_HIT' },
+  { id:'transcendance',    name:'Transcendance',         level:40, base:1,   dofus:'Sacrieur', desc:'Multiplie les dégâts de la prochaine attaque par 2.5.',                    emoji:'🔥', effect:'DOUBLE_STRIKE' },
+  { id:'fureur_divine',    name:'Fureur Divine',         level:45, base:1,   dofus:'Iop',      desc:'Inflige 65 à 100 dégâts, ignorant l\'esquive ennemie.',                   emoji:'⚡', effect:'DAMAGE' },
+  { id:'epee_destin',      name:'Épée du Destin',        level:50, base:0.5, dofus:'Iop',      desc:'Inflige 90 à 140 dégâts dévastateurs, ignorant l\'esquive ennemie.',       emoji:'🗡️', effect:'DAMAGE' },
+];
+
+// ── State ────────────────────────────────────────────────────────────────────
+// Simulate a level 30 player who has unlocked some spells
+const unlockedSpells = ['amplification', 'soin_rapide', 'deceleration', 'bouclier_feca', 'ebranlement', 'mot_prevention'];
+const equippedSpells = ['amplification', 'bouclier_feca'];
+
+// ── Render spells grid ───────────────────────────────────────────────────────
+const MILESTONES = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+function renderSpells() {
+  const container = document.getElementById('spells-container');
+  let html = '';
+
+  const grouped = {};
+  for (const sp of SPELLS) {
+    if (!grouped[sp.level]) grouped[sp.level] = [];
+    grouped[sp.level].push(sp);
+  }
+
+  for (const lv of MILESTONES) {
+    const group = grouped[lv];
+    if (!group) continue;
+    html += `<div class="milestone-section">
+      <div class="milestone-header">
+        <div class="milestone-line"></div>
+        <div class="milestone-label">Niveau ${lv}</div>
+        <div class="milestone-line"></div>
+      </div>
+      <div class="spells-grid">`;
+
+    for (const sp of group) {
+      const barWidth = Math.max(2, Math.min(95, sp.base));
+      html += `
+      <div class="spell-card">
+        <div class="spell-header">
+          <div class="spell-emoji">${sp.emoji}</div>
+          <div class="spell-name">${sp.name}</div>
+          <div class="spell-level-badge">Nv. ${sp.level}</div>
+        </div>
+        <div class="spell-meta">
+          <span class="class-tag">${sp.dofus}</span>
+          <span class="badge badge-${sp.effect}">${sp.effect.replace('_',' ')}</span>
+        </div>
+        <div class="spell-desc">${sp.desc}</div>
+        <div class="spell-trigger">
+          <span style="white-space:nowrap;color:#888;font-size:10px">Base ${sp.base}%</span>
+          <div class="trigger-bar-bg">
+            <div class="trigger-bar" style="width:${barWidth}%"></div>
+          </div>
+          <span style="white-space:nowrap;font-size:10px;color:#a855f7">+HP% manquants</span>
+        </div>
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+// ── Render equipped/unlocked panels ─────────────────────────────────────────
+function renderPanel() {
+  // Equipped slots
+  for (let i = 0; i < 2; i++) {
+    const slot = document.getElementById(`slot-${i}`);
+    const spellId = equippedSpells[i];
+    if (spellId) {
+      const sp = SPELLS.find(s => s.id === spellId);
+      slot.className = 'spell-slot filled';
+      slot.innerHTML = `<span class="slot-emoji">${sp.emoji}</span><span class="slot-name">${sp.name}</span><span style="font-size:9px;color:#666;margin-top:2px">clic pour retirer</span>`;
+    } else {
+      slot.className = 'spell-slot';
+      slot.innerHTML = `<span>Emplacement ${i+1}</span><span style="font-size:18px;color:#333">🔮</span>`;
+    }
+  }
+
+  // Unlocked list
+  const list = document.getElementById('unlocked-list');
+  const unlocked = SPELLS.filter(s => unlockedSpells.includes(s.id));
+  if (unlocked.length === 0) {
+    list.innerHTML = '<div style="font-size:11px;color:#555;text-align:center;padding:12px">Aucun sort débloqué</div>';
+    return;
+  }
+  list.innerHTML = unlocked.map(sp => {
+    const isEquipped = equippedSpells.includes(sp.id);
+    return `<div class="unlocked-item" onclick="toggleEquip('${sp.id}')">
+      <span class="item-emoji">${sp.emoji}</span>
+      <div class="item-info">
+        <div class="item-name">${sp.name}</div>
+        <div class="item-class">${sp.dofus} — Nv.${sp.level} — Base ${sp.base}%</div>
+      </div>
+      <button class="equip-btn ${isEquipped ? 'equipped' : ''}">${isEquipped ? 'Équipé' : 'Équiper'}</button>
+    </div>`;
+  }).join('');
+}
+
+function toggleEquip(id) {
+  if (equippedSpells.includes(id)) {
+    equippedSpells.splice(equippedSpells.indexOf(id), 1);
+  } else {
+    if (equippedSpells.length >= 2) {
+      alert('Maximum 2 sorts équipés. Retirez un sort d\'abord.');
+      return;
+    }
+    equippedSpells.push(id);
+  }
+  renderPanel();
+}
+
+function unequipSlot(i) {
+  if (equippedSpells[i]) {
+    equippedSpells.splice(i, 1);
+    renderPanel();
+  }
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+renderSpells();
+renderPanel();
+</script>
+</body>
+</html>

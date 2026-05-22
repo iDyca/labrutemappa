@@ -19,7 +19,7 @@ import { Users } from './controllers/Users.js';
 import { ServerState } from './utils/ServerState.js';
 import { Configs } from './controllers/Configs.js';
 import { UserLogs } from './controllers/UserLogs.js';
-import { getCharacters, createPlayer, getPlayer, getPlayersByUser, getOpponents, launchFight, openChest, equipItem } from './controllers/Mdfb.js';
+import { getCharacters, createPlayer, getPlayer, getPlayersByUser, getOpponents, launchFight, openChest, equipItem, getSpells, getSpellChoicesForPlayer, chooseSpell, manageEquippedSpell } from './controllers/Mdfb.js';
 import { getFingerprintEvent } from './utils/fingerprint.js';
 
 export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) => {
@@ -212,4 +212,8 @@ export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) =
   app.post("/api/mdfb/fight", launchFight(prisma));
   app.post("/api/mdfb/chest/:chestId/open", openChest(prisma));
   app.post("/api/mdfb/equip", equipItem(prisma));
+  app.get("/api/mdfb/spells", getSpells);
+  app.get("/api/mdfb/player/:playerId/spell-choices", getSpellChoicesForPlayer(prisma));
+  app.post("/api/mdfb/player/:playerId/choose-spell", chooseSpell(prisma));
+  app.post("/api/mdfb/spell/manage", manageEquippedSpell(prisma));
 };

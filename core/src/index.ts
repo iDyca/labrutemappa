@@ -20,3 +20,5 @@ export type { AchievementDef, AchievementType, ChestType } from './mdfb-achievem
 export { openChestForLevel, nextVictoryMilestone, CHEST_LOOT_TABLES, VICTORY_MILESTONES_SUMMARY } from './mdfb-chests.js';
 export { simulateCombat } from './mdfb-combat.js';
 export type { CombatResult, CombatEvent, Fighter } from './mdfb-combat.js';
+export { MDFB_SPELLS, getSpellDef, totalXPForLevel, computeLevelFromXP, getSpellChoices } from './mdfb-spells.js';
+export type { SpellDef, SpellEffect, SpellEffectType } from './mdfb-spells.js';
