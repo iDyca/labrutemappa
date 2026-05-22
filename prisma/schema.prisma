@@ -54,7 +54,7 @@ model User {
   notifications          Notification[]
   reportsHandled         BruteReport[]    @relation("BruteReportHandler")
   logs                   UserLog[]
-  mdfbPlayer             MdfbPlayer?
+  mdfbPlayers            MdfbPlayer[]
 
   @@index([createdAt])
 }
@@ -1026,18 +1026,21 @@ model ClanRole {
 // ─── MAPPADOFUSLABRUTE ───────────────────────────────
 model MdfbPlayer {
   id               String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  userId           String             @unique @db.Uuid
+  // userId non-unique : max 2 personnages par compte (vérifié côté serveur)
+  userId           String             @db.Uuid
   user             User               @relation(fields: [userId], references: [id])
   characterKey     String
   level            Int                @default(1)
   xp               Int                @default(0)
   gold             Int                @default(50)
+  victories        Int                @default(0)
   winStreak        Int                @default(0)
   totalMatches     Int                @default(0)
   critsTotal       Int                @default(0)
   quickWins        Int                @default(0)
+  fightsLeft       Int                @default(15)
+  lastFightDate    DateTime?          @db.Date
   statsHP              Int                @default(100)
-  // Dofus-inspired stat system — points invested by the player each level
   investedFORCE        Int                @default(0)
   investedAGILITE      Int                @default(0)
   investedINTELLIGENCE Int                @default(0)
@@ -1051,6 +1054,7 @@ model MdfbPlayer {
   identityCounters     Json               @default("{}")
 
   @@index([userId])
+  @@index([level])
 }
 
 model MdfbItemInstance {

@@ -19,7 +19,7 @@ import { Users } from './controllers/Users.js';
 import { ServerState } from './utils/ServerState.js';
 import { Configs } from './controllers/Configs.js';
 import { UserLogs } from './controllers/UserLogs.js';
-import { getCharacters, createPlayer, getPlayer, launchFight, openChest, equipItem } from './controllers/Mdfb.js';
+import { getCharacters, createPlayer, getPlayer, getPlayersByUser, getOpponents, launchFight, openChest, equipItem } from './controllers/Mdfb.js';
 import { getFingerprintEvent } from './utils/fingerprint.js';
 
 export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) => {
@@ -205,9 +205,11 @@ export const initRoutes = (app: Express, config: Config, prisma: PrismaClient) =
 
   // MAPPADOFUSLABRUTE
   app.get("/api/mdfb/characters", getCharacters);
-  app.post("/api/mdfb/player", createPlayer);
-  app.get("/api/mdfb/player/:userId", getPlayer);
-  app.post("/api/mdfb/fight", launchFight);
-  app.post("/api/mdfb/chest/:chestId/open", openChest);
-  app.post("/api/mdfb/equip", equipItem);
+  app.post("/api/mdfb/player", createPlayer(prisma));
+  app.get("/api/mdfb/player/:playerId", getPlayer(prisma));
+  app.get("/api/mdfb/user/:userId/players", getPlayersByUser(prisma));
+  app.get("/api/mdfb/opponents/:playerId", getOpponents(prisma));
+  app.post("/api/mdfb/fight", launchFight(prisma));
+  app.post("/api/mdfb/chest/:chestId/open", openChest(prisma));
+  app.post("/api/mdfb/equip", equipItem(prisma));
 };
