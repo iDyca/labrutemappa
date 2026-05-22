@@ -54,9 +54,10 @@ function hasEffect(fighter: Fighter, effect: string): boolean {
 
 // ─── Stat formulas ────────────────────────────────────────────────────────────
 // FORCE        → damage: roll(FORCE, FORCE + FORCE/3)
-// AGILITE      → determines who attacks first; each point = +0.5% dodge (shared with INTELLIGENCE)
+// AGILITE      → determines who attacks first
 // INTELLIGENCE → dodge: base 5% + INTELLIGENCE * 0.3%  (capped 50%)
 // CHANCE       → crit:  base 3% + CHANCE * 0.25%       (capped 40%)
+// HP items     → added to effective maxHP at combat start
 
 export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
   const events: CombatEvent[] = [];
@@ -76,6 +77,12 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
   const bINT    = b.INTELLIGENCE + getLoadoutBonus(b, 'INTELLIGENCE');
   const bCHANCE = b.CHANCE + getLoadoutBonus(b, 'CHANCE');
 
+  // HP items are additive to base HP — tracked via effectiveMaxHP for % calculations
+  const effectiveMaxHP: Record<string, number> = {
+    [a.id]: a.maxHP + getLoadoutBonus(a, 'HP'),
+    [b.id]: b.maxHP + getLoadoutBonus(b, 'HP'),
+  };
+
   // Who strikes first is determined by AGILITE (higher = attacker keeps initiative)
   let [attacker, defender]   = aAGI >= bAGI ? [a, b] : [b, a];
   let [atkF, atkAGI, atkINT, atkCHANCE] = aAGI >= bAGI
@@ -85,15 +92,21 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
     ? [bFORCE, bAGI, bINT, bCHANCE]
     : [aFORCE, aAGI, aINT, aCHANCE];
 
-  let aHP = attacker.HP;
-  let dHP = defender.HP;
+  // Start each fighter at their full effective HP (base + item HP bonuses)
+  let aHP = aAGI >= bAGI
+    ? effectiveMaxHP[a.id] ?? a.HP
+    : effectiveMaxHP[b.id] ?? b.HP;
+  let dHP = aAGI >= bAGI
+    ? effectiveMaxHP[b.id] ?? b.HP
+    : effectiveMaxHP[a.id] ?? a.HP;
 
   // FIRST_STRIKE boot effect: guaranteed initiative regardless of AGILITE
   if (hasEffect(a, 'FIRST_STRIKE') && !hasEffect(b, 'FIRST_STRIKE')) {
     [attacker, defender] = [a, b];
     [atkF, atkAGI, atkINT, atkCHANCE] = [aFORCE, aAGI, aINT, aCHANCE];
     [defF, defAGI, defINT, defCHANCE] = [bFORCE, bAGI, bINT, bCHANCE];
-    aHP = a.HP; dHP = b.HP;
+    aHP = effectiveMaxHP[a.id] ?? a.HP;
+    dHP = effectiveMaxHP[b.id] ?? b.HP;
   }
 
   function strikeOnce(
@@ -102,6 +115,9 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
     targetINT: number,
     actorHP: number, targetHP: number,
   ): { actorHP: number; targetHP: number; killed: boolean } {
+    const targetMaxHP = effectiveMaxHP[target.id] ?? target.maxHP;
+    const actorMaxHP  = effectiveMaxHP[actor.id]  ?? actor.maxHP;
+
     // Dodge (INTELLIGENCE based)
     const dodgeChance = Math.min(0.50, 0.05 + targetINT * 0.003);
     if (Math.random() < dodgeChance) {
@@ -110,12 +126,11 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       // Robin counter-attack on dodge
       if (target.characterKey === 'ROBIN' && Math.random() < 0.10) {
         const cdmg = roll(1, Math.max(1, Math.floor(targetINT * 0.5)));
-        targetHP; // no change, this is target attacking back
         actorHP = Math.max(0, actorHP - cdmg);
         identityCounters['robin_counter'] = (identityCounters['robin_counter'] || 0) + 1;
         events.push({ turn, actorId: target.id, actorName: target.name, type: 'ATTACK',
           message: `⚡ Contre-attaque éclair ! ${cdmg} dégâts`, damage: cdmg,
-          targetHP: Math.max(0, actorHP), targetMaxHP: actor.maxHP });
+          targetHP: Math.max(0, actorHP), targetMaxHP: actorMaxHP });
       }
       return { actorHP, targetHP, killed: false };
     }
@@ -146,8 +161,8 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       crits++;
     }
 
-    // Exécution Romain
-    if (actor.characterKey === 'ROMAIN' && targetHP / target.maxHP < 0.25) {
+    // Exécution Romain — bonus si cible < 25% PV effectifs
+    if (actor.characterKey === 'ROMAIN' && targetHP / targetMaxHP < 0.25) {
       dmg = Math.floor(dmg * 1.12);
       identityCounters['romain_execute'] = (identityCounters['romain_execute'] || 0) + 1;
     }
@@ -183,11 +198,11 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       turn, actorId: actor.id, actorName: actor.name,
       type: isCrit ? 'CRIT' : 'ATTACK',
       message: `${actor.name} ${isCrit ? '⚡ CRITIQUE !' : 'attaque'} ${target.name} — ${dmg} dégâts`,
-      damage: dmg, targetHP, targetMaxHP: target.maxHP,
+      damage: dmg, targetHP, targetMaxHP,
     });
 
     // BERSERK belt — check after each hit
-    if (hasEffect(actor, 'BERSERK') && actorHP / actor.maxHP < 0.30) {
+    if (hasEffect(actor, 'BERSERK') && actorHP / actorMaxHP < 0.30) {
       identityCounters['berserk_active'] = 1;
     }
 
@@ -204,7 +219,7 @@ export function simulateCombat(a: Fighter, b: Fighter): CombatResult {
       identityCounters['timmy_frites'] = (identityCounters['timmy_frites'] || 0) + 1;
       events.push({ turn, actorId: attacker.id, actorName: attacker.name, type: 'PASSIVE',
         message: `🍟 Frite volante ! ${fd} dégâts bonus !`, damage: fd,
-        targetHP: dHP, targetMaxHP: defender.maxHP });
+        targetHP: dHP, targetMaxHP: effectiveMaxHP[defender.id] ?? defender.maxHP });
       if (dHP <= 0) break;
     }
 
