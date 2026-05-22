@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Équipements & Stats MDFB</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1a1a2e; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 24px; }
+  h1 { color: #f0c040; font-size: 22px; margin-bottom: 6px; }
+  h2 { color: #a0c8ff; font-size: 16px; margin: 20px 0 10px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+  h3 { color: #d0d0d0; font-size: 13px; margin: 14px 0 6px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── Stats system ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 8px; }
+  .stat-card { background: #16213e; border-radius: 10px; padding: 14px; border-left: 4px solid; text-align: center; }
+  .stat-card.force  { border-color: #e74c3c; }
+  .stat-card.agi    { border-color: #2ecc71; }
+  .stat-card.intel  { border-color: #3498db; }
+  .stat-card.chance { border-color: #f39c12; }
+  .stat-icon { font-size: 28px; margin-bottom: 6px; }
+  .stat-name { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 4px; }
+  .stat-desc { font-size: 11px; color: #aaa; }
+  .stat-pts  { font-size: 10px; color: #666; margin-top: 6px; }
+
+  .pts-info { background: #16213e; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #aaa; margin-bottom: 4px; }
+  .pts-info strong { color: #f0c040; }
+
+  /* ── Rarity colors ── */
+  .COMMON    { color: #aaaaaa; }
+  .UNCOMMON  { color: #4fc3f7; }
+  .RARE      { color: #ab47bc; }
+  .EPIC      { color: #ff7043; }
+  .LEGENDARY { color: #ffd700; }
+
+  .rarity-badge {
+    display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px;
+    font-weight: bold; text-transform: uppercase; margin-left: 4px; vertical-align: middle;
+  }
+  .badge-COMMON    { background:#333; color:#aaa; }
+  .badge-UNCOMMON  { background:#1a3a4a; color:#4fc3f7; }
+  .badge-RARE      { background:#2d1b33; color:#ab47bc; }
+  .badge-EPIC      { background:#3d1a0a; color:#ff7043; }
+  .badge-LEGENDARY { background:#3d3000; color:#ffd700; }
+
+  /* ── Items table ── */
+  .category-block { margin-bottom: 18px; }
+  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .item-card {
+    background: #16213e; border-radius: 8px; padding: 10px 12px;
+    border: 1px solid #2a2a4a; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .item-card:hover { border-color: #4a4a7a; }
+  .item-sprite {
+    width: 36px; height: 36px; object-fit: contain; flex-shrink: 0;
+    background: #0d1117; border-radius: 4px; padding: 2px;
+    image-rendering: pixelated;
+  }
+  .item-sprite-placeholder {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: #0d1117; border-radius: 4px; display: flex;
+    align-items: center; justify-content: center; font-size: 18px;
+  }
+  .item-info { flex: 1; min-width: 0; }
+  .item-name { font-size: 11px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-level { font-size: 10px; color: #666; margin-top: 1px; }
+  .item-stats { font-size: 10px; color: #88aacc; margin-top: 3px; }
+  .item-effect { font-size: 9px; color: #f39c12; margin-top: 2px; font-style: italic; }
+
+  /* ── Character stats ── */
+  .chars-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .char-card {
+    border-radius: 10px; padding: 12px; border: 1px solid #333;
+  }
+  .char-name { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+  .char-stat-row { display: flex; justify-content: space-between; font-size: 11px; margin: 2px 0; }
+  .char-stat-label { color: #888; }
+  .char-stat-val { color: #fff; font-weight: bold; }
+  .char-passive { font-size: 10px; color: #f39c12; margin-top: 6px; line-height: 1.4; }
+
+  /* ── Level invest example ── */
+  .invest-demo { background:#16213e; border-radius:10px; padding:14px; margin-bottom:8px; }
+  .invest-row { display:flex; align-items:center; gap:10px; margin:6px 0; }
+  .invest-label { width:120px; font-size:12px; color:#aaa; }
+  .invest-bar-bg { flex:1; background:#0d1117; border-radius:4px; height:8px; }
+  .invest-bar { height:8px; border-radius:4px; }
+  .invest-val { width:40px; text-align:right; font-size:12px; font-weight:bold; }
+
+  .section { margin-bottom: 28px; }
+  .tag { display:inline-block; background:#252540; border-radius:4px; padding:2px 6px; font-size:10px; color:#888; margin-right:4px; }
+</style>
+</head>
+<body>
+
+<h1>🗡️ Système d'Équipements & Caractéristiques — MDFB</h1>
+<p style="font-size:12px;color:#666;margin-bottom:20px;">Aperçu des items Dofus Retro et du nouveau système de stats</p>
+
+<!-- ═══════════════════════════════════════════════════ STATS ══ -->
+<div class="section">
+  <h2>⚡ Système de Caractéristiques (style Dofus Retro)</h2>
+  <div class="pts-info">
+    Chaque niveau : <strong>+5 points</strong> à investir librement dans les 4 caractéristiques.
+    Niveau 50 maximum → <strong>245 points totaux</strong> disponibles.
+  </div>
+  <br>
+  <div class="stats-grid">
+    <div class="stat-card force">
+      <div class="stat-icon">⚔️</div>
+      <div class="stat-name">FORCE</div>
+      <div class="stat-desc">Augmente les dégâts infligés<br><br>Dégâts = roll(FORCE, FORCE + FORCE÷3)</div>
+      <div class="stat-pts">Ex. FORCE 30 → 30–40 dégâts de base</div>
+    </div>
+    <div class="stat-card agi">
+      <div class="stat-icon">💨</div>
+      <div class="stat-name">AGILITÉ</div>
+      <div class="stat-desc">Détermine qui attaque en premier et la vitesse de combat</div>
+      <div class="stat-pts">Plus haute AGILITE = initiative garantie</div>
+    </div>
+    <div class="stat-card intel">
+      <div class="stat-icon">🛡️</div>
+      <div class="stat-name">INTELLIGENCE</div>
+      <div class="stat-desc">Chance d'esquiver les attaques ennemies</div>
+      <div class="stat-pts">5% + INT×0.3% (max 50%)<br>Ex. INT 50 → 20% d'esquive</div>
+    </div>
+    <div class="stat-card chance">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-name">CHANCE</div>
+      <div class="stat-desc">Probabilité de déclencher un coup critique (×1.5)</div>
+      <div class="stat-pts">3% + CHA×0.25% (max 40%)<br>Ex. CHA 60 → 18% de crit</div>
+    </div>
+  </div>
+
+  <h3>Exemple — Joueur niveau 20 (95 points disponibles)</h3>
+  <div class="invest-demo">
+    <div style="font-size:11px;color:#888;margin-bottom:8px;">Build "Berserker" : tout en FORCE</div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#e74c3c">⚔️ FORCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:80%;background:#e74c3c"></div></div>
+      <div class="invest-val" style="color:#e74c3c">76</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#2ecc71">💨 AGILITÉ</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:10%;background:#2ecc71"></div></div>
+      <div class="invest-val" style="color:#2ecc71">10</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#3498db">🛡️ INTELLIGENCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:5%;background:#3498db"></div></div>
+      <div class="invest-val" style="color:#3498db">5</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#f39c12">🎯 CHANCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:4%;background:#f39c12"></div></div>
+      <div class="invest-val" style="color:#f39c12">4</div>
+    </div>
+  </div>
+  <div class="invest-demo">
+    <div style="font-size:11px;color:#888;margin-bottom:8px;">Build "Esquiveur" : AGILITÉ + INTELLIGENCE</div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#e74c3c">⚔️ FORCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:5%;background:#e74c3c"></div></div>
+      <div class="invest-val" style="color:#e74c3c">5</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#2ecc71">💨 AGILITÉ</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:45%;background:#2ecc71"></div></div>
+      <div class="invest-val" style="color:#2ecc71">43</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#3498db">🛡️ INTELLIGENCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:45%;background:#3498db"></div></div>
+      <div class="invest-val" style="color:#3498db">43</div>
+    </div>
+    <div class="invest-row">
+      <div class="invest-label" style="color:#f39c12">🎯 CHANCE</div>
+      <div class="invest-bar-bg"><div class="invest-bar" style="width:4%;background:#f39c12"></div></div>
+      <div class="invest-val" style="color:#f39c12">4</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ CHARACTERS ══ -->
+<div class="section">
+  <h2>👤 Personnages — Stats de base</h2>
+  <div class="chars-grid" id="chars"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ ITEMS ══ -->
+<div class="section">
+  <h2>🎩 Coiffes <span style="color:#555;font-size:12px">(30 items)</span></h2>
+  <div class="items-grid" id="hats"></div>
+</div>
+<div class="section">
+  <h2>🧥 Capes <span style="color:#555;font-size:12px">(30 items)</span></h2>
+  <div class="items-grid" id="capes"></div>
+</div>
+<div class="section">
+  <h2>💍 Anneaux <span style="color:#555;font-size:12px">(60 items)</span></h2>
+  <div class="items-grid" id="rings"></div>
+</div>
+<div class="section">
+  <h2>👟 Bottes <span style="color:#555;font-size:12px">(30 items)</span></h2>
+  <div class="items-grid" id="boots"></div>
+</div>
+<div class="section">
+  <h2>🪢 Ceintures <span style="color:#555;font-size:12px">(30 items)</span></h2>
+  <div class="items-grid" id="belts"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ RARITY KEY ══ -->
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+  <span class="rarity-badge badge-COMMON">Commun</span>
+  <span class="rarity-badge badge-UNCOMMON">Peu commun</span>
+  <span class="rarity-badge badge-RARE">Rare</span>
+  <span class="rarity-badge badge-EPIC">Épique</span>
+  <span class="rarity-badge badge-LEGENDARY">Légendaire</span>
+  <span style="font-size:10px;color:#555;margin-left:8px;">Sprites : dofusretro.cdn.ankama.com (IDs à vérifier ce soir)</span>
+</div>
+
+<script>
+const CHARACTERS = [
+  { name:'Timmy', emoji:'🍟', color:'#FAC775', bg:'#633806',
+    stats:{HP:100,FORCE:10,AGILITE:12,INTELLIGENCE:9,CHANCE:9},
+    passive:'Frites volantes : 10% de lancer une frite (3-8 dégâts)' },
+  { name:'Antoine', emoji:'🤓', color:'#B5D4F4', bg:'#0C447C',
+    stats:{HP:100,FORCE:9,AGILITE:10,INTELLIGENCE:12,CHANCE:9},
+    passive:'Optimisation : 8% de parer les projectiles' },
+  { name:'Robin', emoji:'⚡', color:'#C0DD97', bg:'#27500A',
+    stats:{HP:95,FORCE:9,AGILITE:14,INTELLIGENCE:11,CHANCE:9},
+    passive:'Esquive Éclair : +4% esquive, 10% de contre-attaque' },
+  { name:'Hugo', emoji:'💼', color:'#F4C0D1', bg:'#72243E',
+    stats:{HP:100,FORCE:12,AGILITE:10,INTELLIGENCE:9,CHANCE:9},
+    passive:'Deal Gagnant : +10% or, +2% dmg/item équipé' },
+  { name:'Maiko', emoji:'🧠', color:'#CECBF6', bg:'#3C3489',
+    stats:{HP:100,FORCE:9,AGILITE:10,INTELLIGENCE:13,CHANCE:8},
+    passive:'Lecture : -30% durée du 1er effet de contrôle' },
+  { name:'Pierre', emoji:'🪨', color:'#D3D1C7', bg:'#444441',
+    stats:{HP:115,FORCE:13,AGILITE:8,INTELLIGENCE:9,CHANCE:8},
+    passive:'Robustesse : +8% PV max, -3% Vitesse' },
+  { name:'Romain', emoji:'🎯', color:'#F5C4B3', bg:'#993C1D',
+    stats:{HP:100,FORCE:11,AGILITE:10,INTELLIGENCE:9,CHANCE:10},
+    passive:'Exécution : +12% dégâts si ennemi < 25% PV' },
+  { name:'PierreLBZ', emoji:'💪', color:'#9FE1CB', bg:'#085041',
+    stats:{HP:110,FORCE:11,AGILITE:10,INTELLIGENCE:9,CHANCE:9},
+    passive:'Ténacité : survit à 1 PV une fois par combat' },
+];
+
+const STAT_EMOJIS = {FORCE:'⚔️',AGILITE:'💨',INTELLIGENCE:'🛡️',CHANCE:'🎯',HP:'❤️'};
+const STAT_COLORS = {FORCE:'#e74c3c',AGILITE:'#2ecc71',INTELLIGENCE:'#3498db',CHANCE:'#f39c12',HP:'#e91e63'};
+
+const charsEl = document.getElementById('chars');
+CHARACTERS.forEach(c => {
+  const div = document.createElement('div');
+  div.className = 'char-card';
+  div.style.background = c.bg + '22';
+  div.style.borderColor = c.bg;
+  const statsHtml = Object.entries(c.stats).map(([k,v]) =>
+    `<div class="char-stat-row">
+      <span class="char-stat-label">${STAT_EMOJIS[k]} ${k}</span>
+      <span class="char-stat-val" style="color:${STAT_COLORS[k]}">${v}</span>
+    </div>`
+  ).join('');
+  div.innerHTML = `
+    <div class="char-name" style="color:${c.color}">${c.emoji} ${c.name}</div>
+    ${statsHtml}
+    <div class="char-passive">${c.passive}</div>
+  `;
+  charsEl.appendChild(div);
+});
+
+// Items data
+const ITEMS = {
+  hats: [
+    {name:'Coiffe de Tofu',rarity:'COMMON',levelMin:1,dofusId:6526,stats:{HP:[5,8]}},
+    {name:"Chapeau d'Acolyte",rarity:'COMMON',levelMin:1,dofusId:436,stats:{HP:[4,7],INTELLIGENCE:[1,1]}},
+    {name:'Chapeau de Bandit',rarity:'COMMON',levelMin:2,dofusId:437,stats:{HP:[6,10],FORCE:[1,2]}},
+    {name:'Chapeau du Bwork',rarity:'COMMON',levelMin:2,dofusId:1702,stats:{HP:[7,11]}},
+    {name:'Chapeau de Bûcheron',rarity:'COMMON',levelMin:3,dofusId:2436,stats:{HP:[8,13],FORCE:[1,2]}},
+    {name:'Coiffe du Bouftou',rarity:'COMMON',levelMin:5,dofusId:169,stats:{HP:[10,16],FORCE:[1,3]}},
+    {name:'Chapeau du Gobball',rarity:'COMMON',levelMin:7,dofusId:1703,stats:{HP:[13,20],FORCE:[2,4]}},
+    {name:'Chapeau de Mineur',rarity:'UNCOMMON',levelMin:8,dofusId:1704,stats:{HP:[14,22],FORCE:[2,4]}},
+    {name:'Coiffe des Bworks',rarity:'UNCOMMON',levelMin:8,dofusId:1705,stats:{INTELLIGENCE:[3,5],HP:[10,16]}},
+    {name:'Chapeau de Forgeron',rarity:'UNCOMMON',levelMin:9,dofusId:1706,stats:{HP:[15,24],FORCE:[3,5]}},
+    {name:"Coiffe de l'Ermite",rarity:'UNCOMMON',levelMin:10,dofusId:1707,stats:{HP:[16,25],INTELLIGENCE:[3,5]}},
+    {name:'Chapeau du Mercenaire',rarity:'UNCOMMON',levelMin:11,dofusId:1708,stats:{FORCE:[4,7],CHANCE:[2,3]}},
+    {name:'Coiffe du Croc-Dur',rarity:'UNCOMMON',levelMin:12,dofusId:1709,stats:{HP:[18,28],AGILITE:[2,4]}},
+    {name:"Coiffe de l'Homme Grenouille",rarity:'UNCOMMON',levelMin:14,dofusId:1710,stats:{INTELLIGENCE:[4,7],HP:[14,22]}},
+    {name:'Chapeau du Tronqueur',rarity:'RARE',levelMin:16,dofusId:1711,stats:{FORCE:[5,9],HP:[16,26]}},
+    {name:'Coiffe du Fossoyeur',rarity:'RARE',levelMin:17,dofusId:1712,stats:{INTELLIGENCE:[5,9],FORCE:[3,6]}},
+    {name:'Chapeau des Ténèbres',rarity:'RARE',levelMin:19,dofusId:1713,stats:{HP:[22,34],INTELLIGENCE:[4,7]}},
+    {name:'Coiffe du Milirat',rarity:'RARE',levelMin:21,dofusId:1714,stats:{AGILITE:[5,9],CHANCE:[3,5]}},
+    {name:'Coiffe du Minotoror',rarity:'RARE',levelMin:27,dofusId:2723,stats:{HP:[28,42],FORCE:[6,10]}},
+    {name:"Chapeau de l'Ours",rarity:'RARE',levelMin:28,dofusId:1715,stats:{HP:[30,45],FORCE:[6,10]}},
+    {name:'Coiffe du Dragoune',rarity:'UNCOMMON',levelMin:31,dofusId:1716,stats:{HP:[32,48],AGILITE:[4,7]}},
+    {name:"Chapeau de l'Ouginak",rarity:'RARE',levelMin:34,dofusId:1717,stats:{FORCE:[8,13],INTELLIGENCE:[5,8]}},
+    {name:'Coiffe du Ternaire',rarity:'RARE',levelMin:35,dofusId:1718,stats:{HP:[36,55],FORCE:[7,12],CHANCE:[4,6]}},
+    {name:"Chapeau de l'Hivernage",rarity:'EPIC',levelMin:37,dofusId:1719,stats:{INTELLIGENCE:[10,16],HP:[30,45]}},
+    {name:'Coiffe du Mastogobe',rarity:'EPIC',levelMin:40,dofusId:1720,stats:{HP:[40,60],AGILITE:[7,12]}},
+    {name:'Coiffe du Sacrieur',rarity:'RARE',levelMin:41,dofusId:1721,stats:{FORCE:[10,16],HP:[35,52]}},
+    {name:'Chapeau de Goultard',rarity:'EPIC',levelMin:44,dofusId:1722,stats:{FORCE:[13,20],CHANCE:[7,11]}},
+    {name:'Coiffe Eniripsa',rarity:'EPIC',levelMin:46,dofusId:1723,stats:{INTELLIGENCE:[14,22],HP:[40,60]}},
+    {name:'Coiffe de la Grande Duchesse',rarity:'LEGENDARY',levelMin:47,dofusId:1724,stats:{HP:[55,80],FORCE:[12,18],INTELLIGENCE:[10,15]}},
+    {name:'Chapeau du Iop',rarity:'LEGENDARY',levelMin:49,dofusId:1725,stats:{FORCE:[18,28],CHANCE:[12,18],HP:[40,60]}},
+  ],
+  capes: [
+    {name:'Cape en Toile',rarity:'COMMON',levelMin:1,dofusId:2101,stats:{HP:[4,7]}},
+    {name:'Cape de Cuir',rarity:'COMMON',levelMin:2,dofusId:2102,stats:{INTELLIGENCE:[1,2]}},
+    {name:'Cape du Novice',rarity:'COMMON',levelMin:2,dofusId:2103,stats:{AGILITE:[1,2]}},
+    {name:'Cape du Bwork',rarity:'COMMON',levelMin:3,dofusId:2104,stats:{HP:[8,12],INTELLIGENCE:[1,2]}},
+    {name:'Cape du Pouchkine',rarity:'COMMON',levelMin:5,dofusId:2105,stats:{CHANCE:[2,3],HP:[7,11]}},
+    {name:'Cape du Bouftou',rarity:'COMMON',levelMin:6,dofusId:2106,stats:{INTELLIGENCE:[2,4],HP:[8,13]}},
+    {name:'Cape du Gobball',rarity:'UNCOMMON',levelMin:7,dofusId:2107,stats:{INTELLIGENCE:[3,5],AGILITE:[2,4]}},
+    {name:'Cape Sombre',rarity:'UNCOMMON',levelMin:8,dofusId:2108,stats:{INTELLIGENCE:[4,6]}},
+    {name:'Cape du Tronqueur',rarity:'UNCOMMON',levelMin:10,dofusId:2109,stats:{HP:[14,22],INTELLIGENCE:[3,5]}},
+    {name:'Cape du Mercenaire',rarity:'UNCOMMON',levelMin:11,dofusId:2110,stats:{AGILITE:[4,6],INTELLIGENCE:[3,5]}},
+    {name:"Cape de l'Homme Grenouille",rarity:'UNCOMMON',levelMin:13,dofusId:2111,stats:{INTELLIGENCE:[4,7],CHANCE:[3,5]}},
+    {name:'Cape du Corbac',rarity:'UNCOMMON',levelMin:15,dofusId:2112,stats:{INTELLIGENCE:[5,8],AGILITE:[3,5]},effect:'SHADOW5'},
+    {name:'Cape du Fossoyeur',rarity:'RARE',levelMin:16,dofusId:2113,stats:{INTELLIGENCE:[5,9],HP:[14,22]}},
+    {name:'Cape du Minotoror',rarity:'RARE',levelMin:17,dofusId:2114,stats:{HP:[22,34],FORCE:[4,7]}},
+    {name:'Cape du Chevalier Noir',rarity:'RARE',levelMin:19,dofusId:2115,stats:{INTELLIGENCE:[6,10],FORCE:[4,7]}},
+    {name:'Cape du Toady',rarity:'RARE',levelMin:20,dofusId:2116,stats:{INTELLIGENCE:[6,10]}},
+    {name:'Cape du Singe',rarity:'RARE',levelMin:21,dofusId:2117,stats:{AGILITE:[6,10],CHANCE:[4,6]}},
+    {name:'Cape du Chef Bwork',rarity:'RARE',levelMin:23,dofusId:2118,stats:{HP:[24,36],INTELLIGENCE:[5,9]}},
+    {name:'Cape de Rastapopoil',rarity:'RARE',levelMin:25,dofusId:2119,stats:{AGILITE:[7,12],INTELLIGENCE:[5,8]}},
+    {name:"Cape d'Ogrest",rarity:'RARE',levelMin:29,dofusId:2120,stats:{HP:[28,42],FORCE:[6,10],INTELLIGENCE:[4,7]}},
+    {name:'Cape de Sombrio',rarity:'UNCOMMON',levelMin:30,dofusId:2121,stats:{INTELLIGENCE:[7,11],AGILITE:[4,7]}},
+    {name:'Cape de la Grande Menace',rarity:'RARE',levelMin:32,dofusId:2122,stats:{FORCE:[8,13],INTELLIGENCE:[6,10]}},
+    {name:'Cape du Dragoune',rarity:'EPIC',levelMin:34,dofusId:2123,stats:{HP:[38,58],AGILITE:[8,13]}},
+    {name:"Cape de l'Ouginak",rarity:'EPIC',levelMin:36,dofusId:2124,stats:{INTELLIGENCE:[12,18],FORCE:[7,12]}},
+    {name:'Cape du Roi des Voleurs',rarity:'EPIC',levelMin:39,dofusId:2125,stats:{AGILITE:[10,16],INTELLIGENCE:[8,13],CHANCE:[5,8]}},
+    {name:'Cape du Sacrieur',rarity:'RARE',levelMin:41,dofusId:2126,stats:{FORCE:[10,16],HP:[35,52]}},
+    {name:'Cape de Goultard',rarity:'EPIC',levelMin:44,dofusId:2127,stats:{FORCE:[12,18],INTELLIGENCE:[9,14]}},
+    {name:"Cape d'Eniripsa",rarity:'EPIC',levelMin:45,dofusId:2128,stats:{INTELLIGENCE:[14,22],HP:[40,60]}},
+    {name:"Voile d'Encre",rarity:'LEGENDARY',levelMin:48,dofusId:7816,stats:{AGILITE:[18,28],INTELLIGENCE:[14,22]},effect:'SHADOW8'},
+    {name:'Grande Cape Finale',rarity:'LEGENDARY',levelMin:50,dofusId:2130,stats:{FORCE:[16,24],INTELLIGENCE:[16,24],HP:[50,75]}},
+  ],
+  rings: [
+    {name:'Anneau de Bois',rarity:'COMMON',levelMin:1,dofusId:3001,stats:{HP:[2,4]}},
+    {name:'Anneau du Novice',rarity:'COMMON',levelMin:1,dofusId:3002,stats:{CHANCE:[1,2]}},
+    {name:'Anneau de Tofu',rarity:'COMMON',levelMin:1,dofusId:3003,stats:{AGILITE:[1,2]}},
+    {name:'Anneau de Cuivre',rarity:'COMMON',levelMin:2,dofusId:3004,stats:{HP:[3,6]}},
+    {name:'Anneau du Bandit',rarity:'COMMON',levelMin:2,dofusId:3005,stats:{CHANCE:[1,2],HP:[2,4]}},
+    {name:'Anneau du Bwork',rarity:'COMMON',levelMin:3,dofusId:3006,stats:{HP:[4,7]}},
+    {name:'Anneau du Bouftou',rarity:'COMMON',levelMin:4,dofusId:125,stats:{HP:[5,9],FORCE:[1,2]}},
+    {name:'Anneau du Prespic',rarity:'COMMON',levelMin:5,dofusId:3008,stats:{INTELLIGENCE:[2,3],HP:[4,7]}},
+    {name:'Anneau du Gobball',rarity:'COMMON',levelMin:6,dofusId:3009,stats:{FORCE:[2,4],CHANCE:[1,2]}},
+    {name:'Anneau du Garde Royal',rarity:'COMMON',levelMin:7,dofusId:3010,stats:{HP:[6,10],FORCE:[2,3]}},
+    {name:'Anneau de Paille',rarity:'COMMON',levelMin:1,dofusId:3051,stats:{HP:[2,3]}},
+    {name:'Anneau Jonquille',rarity:'COMMON',levelMin:4,dofusId:3052,stats:{FORCE:[1,2],HP:[3,5]}},
+    {name:'Anneau du Mercenaire',rarity:'UNCOMMON',levelMin:8,dofusId:3011,stats:{FORCE:[3,5],HP:[5,9]}},
+    {name:'Anneau du Croc-Dur',rarity:'UNCOMMON',levelMin:9,dofusId:3012,stats:{FORCE:[3,6],INTELLIGENCE:[2,4]}},
+    {name:'Anneau du Mineur',rarity:'UNCOMMON',levelMin:10,dofusId:3013,stats:{HP:[8,14],CHANCE:[2,4]}},
+    {name:"Anneau de l'Ermite",rarity:'UNCOMMON',levelMin:11,dofusId:3014,stats:{INTELLIGENCE:[3,6],HP:[7,12]}},
+    {name:"Anneau de l'Aventurier",rarity:'UNCOMMON',levelMin:8,dofusId:3015,stats:{HP:[6,10],AGILITE:[2,4]}},
+    {name:"Anneau de l'Homme Grenouille",rarity:'UNCOMMON',levelMin:12,dofusId:3016,stats:{INTELLIGENCE:[3,6],CHANCE:[2,4]}},
+    {name:'Anneau du Guerrier',rarity:'UNCOMMON',levelMin:13,dofusId:3017,stats:{FORCE:[4,7],AGILITE:[2,4]}},
+    {name:'Anneau du Corsaire',rarity:'UNCOMMON',levelMin:14,dofusId:3018,stats:{AGILITE:[4,6],CHANCE:[2,4]}},
+    {name:'Anneau du Tronqueur',rarity:'RARE',levelMin:17,dofusId:3021,stats:{FORCE:[5,9],HP:[9,15]}},
+    {name:'Anneau du Chevalier Noir',rarity:'RARE',levelMin:19,dofusId:3022,stats:{INTELLIGENCE:[5,9],FORCE:[4,7]}},
+    {name:'Anneau du Milirat',rarity:'RARE',levelMin:20,dofusId:3023,stats:{AGILITE:[5,9],CHANCE:[3,5]}},
+    {name:'Anneau du Minotoror',rarity:'RARE',levelMin:27,dofusId:3029,stats:{HP:[14,22],FORCE:[5,9]}},
+    {name:'Anneau du Roi des Bandits',rarity:'RARE',levelMin:28,dofusId:3030,stats:{FORCE:[5,9],CHANCE:[4,7]}},
+    {name:'Anneau du Grand Duc',rarity:'EPIC',levelMin:35,dofusId:3035,stats:{INTELLIGENCE:[10,16],AGILITE:[7,11]}},
+    {name:"Anneau de l'Hivernage",rarity:'EPIC',levelMin:36,dofusId:3036,stats:{HP:[22,34],INTELLIGENCE:[9,14]}},
+    {name:'Anneau du Mastogobe',rarity:'EPIC',levelMin:37,dofusId:3037,stats:{FORCE:[10,16],HP:[18,28]}},
+    {name:"Anneau d'Ogrest",rarity:'EPIC',levelMin:38,dofusId:3038,stats:{HP:[20,32],FORCE:[8,13],CHANCE:[5,9]}},
+    {name:'Anneau de la Reine des Araignées',rarity:'EPIC',levelMin:39,dofusId:3039,stats:{INTELLIGENCE:[10,16],CHANCE:[7,11]}},
+    {name:'Anneau du Sacrieur',rarity:'RARE',levelMin:41,dofusId:3041,stats:{FORCE:[10,16],HP:[18,28]}},
+    {name:'Anneau de Eniripsa',rarity:'EPIC',levelMin:43,dofusId:3042,stats:{INTELLIGENCE:[12,19],HP:[18,28]}},
+    {name:'Anneau du Sram',rarity:'EPIC',levelMin:44,dofusId:3043,stats:{CHANCE:[9,15],AGILITE:[7,11]}},
+    {name:'Anneau du Iop',rarity:'EPIC',levelMin:46,dofusId:3046,stats:{FORCE:[12,19],CHANCE:[8,13]}},
+    {name:'Anneau du Feca',rarity:'LEGENDARY',levelMin:47,dofusId:3047,stats:{INTELLIGENCE:[14,22],HP:[22,34]}},
+    {name:'Anneau de Goultard',rarity:'LEGENDARY',levelMin:47,dofusId:3048,stats:{FORCE:[14,22],HP:[18,28]}},
+    {name:'Anneau du Roi',rarity:'LEGENDARY',levelMin:49,dofusId:3049,stats:{FORCE:[12,18],INTELLIGENCE:[12,18],CHANCE:[10,15]}},
+    {name:'Anneau du Dieu Guerrier',rarity:'LEGENDARY',levelMin:50,dofusId:3050,stats:{FORCE:[16,24],CHANCE:[14,20],HP:[30,45]}},
+    {name:'Anneau Éternel',rarity:'LEGENDARY',levelMin:48,dofusId:3060,stats:{HP:[25,38],FORCE:[12,18],INTELLIGENCE:[10,15]}},
+    // padding to show 60
+    {name:"Anneau de l'Ours Blanc",rarity:'UNCOMMON',levelMin:16,dofusId:3020,stats:{HP:[10,16],FORCE:[3,6]}},
+    {name:'Anneau du Fossoyeur',rarity:'UNCOMMON',levelMin:15,dofusId:3019,stats:{INTELLIGENCE:[4,7],HP:[8,13]}},
+    {name:'Anneau de Sombrio',rarity:'RARE',levelMin:21,dofusId:3024,stats:{INTELLIGENCE:[5,9],AGILITE:[3,6]}},
+    {name:"Anneau de l'Ours",rarity:'RARE',levelMin:22,dofusId:3025,stats:{HP:[14,22],FORCE:[4,7]}},
+    {name:'Anneau du Scarafeuille',rarity:'RARE',levelMin:23,dofusId:3026,stats:{INTELLIGENCE:[5,9],HP:[10,16]}},
+    {name:'Anneau de la Tortue',rarity:'RARE',levelMin:24,dofusId:3027,stats:{HP:[12,19],INTELLIGENCE:[4,8]}},
+    {name:'Anneau du Singe',rarity:'RARE',levelMin:26,dofusId:3028,stats:{AGILITE:[5,9],CHANCE:[4,6]}},
+    {name:'Anneau du Dragoune',rarity:'UNCOMMON',levelMin:31,dofusId:3031,stats:{AGILITE:[5,9],HP:[12,19]}},
+    {name:'Anneau Sombre de Sombrio',rarity:'RARE',levelMin:32,dofusId:3032,stats:{INTELLIGENCE:[7,12],FORCE:[5,9]}},
+    {name:"Anneau de l'Ouginak",rarity:'RARE',levelMin:33,dofusId:3033,stats:{FORCE:[7,12],INTELLIGENCE:[5,9]}},
+    {name:'Anneau du Ternaire',rarity:'RARE',levelMin:34,dofusId:3034,stats:{HP:[18,28],CHANCE:[5,9]}},
+    {name:'Anneau du Chef de Clan',rarity:'EPIC',levelMin:40,dofusId:3040,stats:{FORCE:[10,16],AGILITE:[7,11]}},
+    {name:'Anneau du Xelor',rarity:'EPIC',levelMin:44,dofusId:3044,stats:{AGILITE:[9,14],INTELLIGENCE:[7,12]}},
+    {name:'Anneau du Cra',rarity:'EPIC',levelMin:45,dofusId:3045,stats:{CHANCE:[10,16],AGILITE:[7,11]}},
+    {name:"Anneau de l'Éclair",rarity:'EPIC',levelMin:38,dofusId:3058,stats:{AGILITE:[8,13],CHANCE:[6,10]}},
+    {name:'Anneau de la Lame',rarity:'UNCOMMON',levelMin:10,dofusId:3053,stats:{FORCE:[3,6],CHANCE:[2,3]}},
+    {name:"Anneau d'Or du Corsaire",rarity:'UNCOMMON',levelMin:13,dofusId:3054,stats:{CHANCE:[3,5],AGILITE:[2,4]}},
+    {name:"Anneau de l'Ombre",rarity:'RARE',levelMin:18,dofusId:3055,stats:{INTELLIGENCE:[4,8],CHANCE:[3,5]}},
+    {name:'Anneau de la Terre',rarity:'RARE',levelMin:25,dofusId:3056,stats:{FORCE:[5,9],HP:[8,13]}},
+    {name:'Anneau de Combat',rarity:'UNCOMMON',levelMin:33,dofusId:3057,stats:{FORCE:[6,10],HP:[10,16]}},
+    {name:'Anneau du Vide',rarity:'RARE',levelMin:42,dofusId:3059,stats:{INTELLIGENCE:[9,14],AGILITE:[5,9]}},
+  ],
+  boots: [
+    {name:'Sandales de Plage',rarity:'COMMON',levelMin:1,dofusId:4001,stats:{AGILITE:[1,2]}},
+    {name:'Bottes de Cuir',rarity:'COMMON',levelMin:1,dofusId:4002,stats:{AGILITE:[1,2],HP:[3,5]}},
+    {name:'Sandales de Tofu',rarity:'COMMON',levelMin:2,dofusId:4003,stats:{AGILITE:[2,3]}},
+    {name:'Bottes de Bwork',rarity:'COMMON',levelMin:2,dofusId:4004,stats:{AGILITE:[2,3],HP:[4,7]}},
+    {name:'Bottes du Novice',rarity:'COMMON',levelMin:3,dofusId:4005,stats:{AGILITE:[2,4],INTELLIGENCE:[1,2]}},
+    {name:'Bottes du Bouftou',rarity:'COMMON',levelMin:5,dofusId:4006,stats:{AGILITE:[3,5],HP:[6,10]}},
+    {name:'Bottes du Gobball',rarity:'COMMON',levelMin:7,dofusId:4007,stats:{AGILITE:[3,6],FORCE:[2,3]}},
+    {name:'Bottes du Mineur',rarity:'UNCOMMON',levelMin:8,dofusId:4008,stats:{AGILITE:[4,7],HP:[7,12]}},
+    {name:"Bottes de l'Aventurier",rarity:'UNCOMMON',levelMin:8,dofusId:4009,stats:{AGILITE:[4,7],INTELLIGENCE:[2,4]}},
+    {name:'Bottes du Mercenaire',rarity:'UNCOMMON',levelMin:10,dofusId:4010,stats:{AGILITE:[5,8],CHANCE:[2,4]}},
+    {name:'Bottes du Croc-Dur',rarity:'UNCOMMON',levelMin:10,dofusId:4011,stats:{AGILITE:[5,8],HP:[8,13]}},
+    {name:'Bottes du Corsaire',rarity:'UNCOMMON',levelMin:12,dofusId:4012,stats:{AGILITE:[5,9],INTELLIGENCE:[3,5]}},
+    {name:"Bottes de l'Homme Grenouille",rarity:'UNCOMMON',levelMin:13,dofusId:4013,stats:{INTELLIGENCE:[4,7],AGILITE:[4,7]}},
+    {name:'Bottes du Tronqueur',rarity:'RARE',levelMin:15,dofusId:4014,stats:{AGILITE:[6,10],FORCE:[3,6]}},
+    {name:'Bottes du Flibustier',rarity:'RARE',levelMin:17,dofusId:4015,stats:{AGILITE:[6,10],CHANCE:[4,6]}},
+    {name:'Bottes du Fossoyeur',rarity:'RARE',levelMin:18,dofusId:4016,stats:{INTELLIGENCE:[6,10],AGILITE:[4,7]}},
+    {name:'Bottes du Nomade',rarity:'RARE',levelMin:20,dofusId:4017,stats:{AGILITE:[8,13]}},
+    {name:"Bottes de l'Ours",rarity:'RARE',levelMin:22,dofusId:4018,stats:{HP:[16,26],AGILITE:[5,9]}},
+    {name:'Bottes du Minotoror',rarity:'RARE',levelMin:25,dofusId:4019,stats:{AGILITE:[8,13],FORCE:[5,9]}},
+    {name:'Bottes du Roi des Bandits',rarity:'RARE',levelMin:28,dofusId:4020,stats:{AGILITE:[8,13],CHANCE:[5,8]}},
+    {name:"Bottes de l'Ouginak",rarity:'UNCOMMON',levelMin:31,dofusId:4021,stats:{AGILITE:[7,12],INTELLIGENCE:[4,7]}},
+    {name:'Bottes du Dragoune',rarity:'RARE',levelMin:33,dofusId:4022,stats:{AGILITE:[9,14],HP:[16,26]}},
+    {name:'Bottes du Ternaire',rarity:'EPIC',levelMin:35,dofusId:4023,stats:{FORCE:[9,14],AGILITE:[9,14]}},
+    {name:"Bottes de l'Hivernage",rarity:'EPIC',levelMin:37,dofusId:4024,stats:{AGILITE:[12,18],INTELLIGENCE:[7,12]}},
+    {name:'Bottes du Mastogobe',rarity:'EPIC',levelMin:39,dofusId:4025,stats:{HP:[24,36],AGILITE:[9,14]}},
+    {name:'Bottes du Sacrieur',rarity:'RARE',levelMin:41,dofusId:4026,stats:{FORCE:[10,16],AGILITE:[8,13]}},
+    {name:'Bottes du Sram',rarity:'EPIC',levelMin:43,dofusId:4027,stats:{AGILITE:[12,19],CHANCE:[7,11]}},
+    {name:'Bottes Horlogères',rarity:'EPIC',levelMin:45,dofusId:4028,stats:{AGILITE:[15,22]},effect:'FIRST_STRIKE'},
+    {name:"Bottes d'Eniripsa",rarity:'LEGENDARY',levelMin:47,dofusId:4029,stats:{INTELLIGENCE:[14,22],AGILITE:[12,18]}},
+    {name:'Bottes de Goultard',rarity:'LEGENDARY',levelMin:49,dofusId:4030,stats:{FORCE:[16,24],AGILITE:[14,20]}},
+  ],
+  belts: [
+    {name:'Ceinture en Corde',rarity:'COMMON',levelMin:1,dofusId:5001,stats:{HP:[3,5]}},
+    {name:'Ceinture en Toile',rarity:'COMMON',levelMin:1,dofusId:5002,stats:{INTELLIGENCE:[1,2]}},
+    {name:'Ceinture de Tofu',rarity:'COMMON',levelMin:2,dofusId:5003,stats:{HP:[4,7]}},
+    {name:'Ceinture du Bwork',rarity:'COMMON',levelMin:2,dofusId:5004,stats:{HP:[5,8],CHANCE:[1,2]}},
+    {name:'Ceinture du Novice',rarity:'COMMON',levelMin:3,dofusId:5005,stats:{INTELLIGENCE:[1,3],HP:[4,7]}},
+    {name:'Ceinture du Bouftou',rarity:'COMMON',levelMin:5,dofusId:5006,stats:{HP:[7,11],FORCE:[1,3]}},
+    {name:'Ceinture du Prespic',rarity:'COMMON',levelMin:6,dofusId:5007,stats:{INTELLIGENCE:[2,4]},effect:'THORNS1'},
+    {name:'Ceinture du Gobball',rarity:'UNCOMMON',levelMin:7,dofusId:5008,stats:{FORCE:[2,4],HP:[7,12]}},
+    {name:'Ceinture du Mineur',rarity:'UNCOMMON',levelMin:8,dofusId:5009,stats:{HP:[8,14],INTELLIGENCE:[2,4]}},
+    {name:'Ceinture du Mercenaire',rarity:'UNCOMMON',levelMin:9,dofusId:5010,stats:{FORCE:[3,6],CHANCE:[2,3]}},
+    {name:'Ceinture du Croc-Dur',rarity:'UNCOMMON',levelMin:10,dofusId:5011,stats:{HP:[9,15],FORCE:[3,5]}},
+    {name:'Ceinture du Corsaire',rarity:'UNCOMMON',levelMin:11,dofusId:5012,stats:{CHANCE:[3,5],AGILITE:[2,4]}},
+    {name:"Ceinture de l'Homme Grenouille",rarity:'UNCOMMON',levelMin:13,dofusId:5013,stats:{INTELLIGENCE:[3,6],HP:[8,13]}},
+    {name:'Ceinture du Tronqueur',rarity:'RARE',levelMin:15,dofusId:5014,stats:{FORCE:[4,8],HP:[9,15]}},
+    {name:'Ceinture Tortue',rarity:'RARE',levelMin:16,dofusId:5015,stats:{INTELLIGENCE:[5,9]},effect:'DMG_REDUCE3'},
+    {name:'Ceinture du Fossoyeur',rarity:'RARE',levelMin:18,dofusId:5016,stats:{INTELLIGENCE:[5,9],FORCE:[3,6]}},
+    {name:'Ceinture du Nomade',rarity:'RARE',levelMin:19,dofusId:5017,stats:{AGILITE:[5,9],FORCE:[3,6]}},
+    {name:'Ceinture Fulgu',rarity:'RARE',levelMin:21,dofusId:5018,stats:{AGILITE:[5,9],INTELLIGENCE:[4,7]}},
+    {name:'Ceinture du Minotoror',rarity:'RARE',levelMin:24,dofusId:5019,stats:{HP:[14,22],FORCE:[5,9]}},
+    {name:'Ceinture du Roi des Bandits',rarity:'RARE',levelMin:27,dofusId:5020,stats:{FORCE:[5,9],CHANCE:[4,7]}},
+    {name:"Ceinture de l'Ouginak",rarity:'UNCOMMON',levelMin:30,dofusId:5021,stats:{FORCE:[6,10],INTELLIGENCE:[4,7]}},
+    {name:'Ceinture du Dragoune',rarity:'RARE',levelMin:32,dofusId:5022,stats:{HP:[16,26],AGILITE:[5,9]}},
+    {name:'Ceinture du Ternaire',rarity:'EPIC',levelMin:34,dofusId:5023,stats:{FORCE:[9,14],HP:[16,26]}},
+    {name:"Ceinture de l'Hivernage",rarity:'EPIC',levelMin:36,dofusId:5024,stats:{INTELLIGENCE:[10,16],FORCE:[7,12]}},
+    {name:'Ceinture du Mastogobe',rarity:'EPIC',levelMin:38,dofusId:5025,stats:{HP:[22,34],FORCE:[8,13],CHANCE:[5,9]}},
+    {name:'Ceinture du Sacrieur',rarity:'RARE',levelMin:41,dofusId:5026,stats:{FORCE:[10,16],HP:[16,26]}},
+    {name:'Ceinture du Sram',rarity:'EPIC',levelMin:43,dofusId:5027,stats:{CHANCE:[9,15],INTELLIGENCE:[7,11]}},
+    {name:'Ceinture de Goultard',rarity:'EPIC',levelMin:46,dofusId:5028,stats:{FORCE:[12,18],HP:[18,28]},effect:'BERSERK'},
+    {name:"Ceinture d'Eniripsa",rarity:'LEGENDARY',levelMin:47,dofusId:5029,stats:{INTELLIGENCE:[14,22],HP:[22,34]}},
+    {name:'Ceinture Finale',rarity:'LEGENDARY',levelMin:50,dofusId:5030,stats:{FORCE:[16,24],INTELLIGENCE:[14,20],HP:[24,36]}},
+  ],
+};
+
+const SLOT_EMOJI = {hats:'🎩',capes:'🧥',rings:'💍',boots:'👟',belts:'🪢'};
+const EFFECT_LABELS = {
+  SHADOW5:'5% esquive ennemie',SHADOW8:'8% esquive ennemie',
+  THORNS1:'Renvoie 1 dégât',DMG_REDUCE3:'-3% dégâts reçus',
+  BERSERK:'Berserk <30% PV',FIRST_STRIKE:'Initiative garantie',
+};
+
+function statStr(stats) {
+  return Object.entries(stats).map(([k,v]) => {
+    const colors = {FORCE:'#e74c3c',AGILITE:'#2ecc71',INTELLIGENCE:'#3498db',CHANCE:'#f39c12',HP:'#e91e63'};
+    return `<span style="color:${colors[k]||'#aaa'}">${k.slice(0,3)} ${v[0]}-${v[1]}</span>`;
+  }).join(' ');
+}
+
+Object.entries(ITEMS).forEach(([slot, items]) => {
+  const el = document.getElementById(slot);
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    const spriteUrl = `https://dofusretro.cdn.ankama.com/item/preview/${item.dofusId}.png`;
+    card.innerHTML = `
+      <img class="item-sprite" src="${spriteUrl}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+      <div class="item-sprite-placeholder" style="display:none">${SLOT_EMOJI[slot]}</div>
+      <div class="item-info">
+        <div class="item-name ${item.rarity}">${item.name}
+          <span class="rarity-badge badge-${item.rarity}">${item.rarity.slice(0,3)}</span>
+        </div>
+        <div class="item-level">Niv. ${item.levelMin} <span style="color:#444">(Dofus: ${item.levelMin*4})</span></div>
+        <div class="item-stats">${statStr(item.stats)}</div>
+        ${item.effect ? `<div class="item-effect">✨ ${EFFECT_LABELS[item.effect]||item.effect}</div>` : ''}
+      </div>
+    `;
+    el.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>
